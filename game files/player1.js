@@ -14,6 +14,40 @@ function initPlayer1() {
         jump: false,
         deaths: 0
     };
+    game = {
+        level: 1,
+        platforms: [],
+        spikes: [],
+        moveables: [],
+        specials: [],
+        triggers: [],
+        clearLevel: function() {
+            game.platforms = [];
+            game.spikes = [];
+            game.moveables = [];
+            game.specials = [];
+            game.triggers = [];
+        },
+        logic: function() {
+            for(i = 0; i < game.moveables.length; i++) {
+                game.moveables[i].logic();
+            }
+            for(i = 0; i < game.triggers.length; i++) {
+                game.triggers[i].logic();
+            }
+        },
+        show: function() {
+            for(i = 0; i < game.platforms.length; i++) {
+                game.platforms[i].show();
+            }
+            for(i = 0; i < game.spikes.length; i++) {
+                game.spikes[i].show();
+            }
+            for(i = 0; i < game.specials.length; i++) {
+                game.specials[i].show();
+            }
+        }
+    };
 }
 
 function respawn() {
@@ -45,69 +79,69 @@ function movePlayer1() {
     }
 
     // Collision Detection
-    for (i = 0; i < platforms.length; i++) {
-        if (player1.x + player1.w > platforms[i].x && player1.x < platforms[i].x + platforms[i].w) {
-            if (player1.y <= platforms[i].y - 1 && player1.y + player1.h >= platforms[i].y - 1) {
+    for (i = 0; i < game.platforms.length; i++) {
+        if (player1.x + player1.w > game.platforms[i].x && player1.x < game.platforms[i].x + game.platforms[i].w) {
+            if (player1.y <= game.platforms[i].y - 1 && player1.y + player1.h >= game.platforms[i].y - 1) {
                 player1.ySpeed = 0;
-                player1.y = platforms[i].y - player1.h - 1;
+                player1.y = game.platforms[i].y - player1.h - 1;
                 player1.jump = false;
             }
-            if (player1.y <= platforms[i].y + platforms[i].h && player1.y + player1.h >= platforms[i].y + platforms[i].h) {
-                player1.y = platforms[i].y + platforms[i].h + 1
+            if (player1.y <= game.platforms[i].y + game.platforms[i].h && player1.y + player1.h >= game.platforms[i].y + game.platforms[i].h) {
+                player1.y = game.platforms[i].y + game.platforms[i].h + 1
                 player1.ySpeed = player1.a;
             }
         }
 
-        if (player1.x + player1.w > platforms[i].x && player1.x <= platforms[i].x) {
-            if (player1.y >= platforms[i].y && player1.y + player1.h < platforms[i].y + platforms[i].h) {
-                player1.x = platforms[i].x - player1.w;
+        if (player1.x + player1.w > game.platforms[i].x && player1.x <= game.platforms[i].x) {
+            if (player1.y >= game.platforms[i].y && player1.y + player1.h < game.platforms[i].y + game.platforms[i].h) {
+                player1.x = game.platforms[i].x - player1.w;
             }
         }
-        if (player1.x < platforms[i].x + platforms[i].w + 1 && player1.x + player1.w >= platforms[i].x + platforms[i].w) {
-            if (player1.y >= platforms[i].y && player1.y + player1.h < platforms[i].y + platforms[i].h) {
-                player1.x = platforms[i].x + platforms[i].w;
+        if (player1.x < game.platforms[i].x + game.platforms[i].w + 1 && player1.x + player1.w >= game.platforms[i].x + game.platforms[i].w) {
+            if (player1.y >= game.platforms[i].y && player1.y + player1.h < game.platforms[i].y + game.platforms[i].h) {
+                player1.x = game.platforms[i].x + game.platforms[i].w;
             }
         }
     }
 
     // Moveables Collision Detection
-    for(i = 0; i < moveables.length; i++) {
-        if (moveables[i].type == "platforms") {
-            if (player1.x + player1.w > platforms[moveables[i].index].x && player1.x < platforms[moveables[i].index].x + platforms[moveables[i].index].w) {
-                if (player1.y == platforms[moveables[i].index].y - player1.h - 1) {
-                    player1.xSpeed += moveables[i].xSpeed;
-                    player1.ySpeed += moveables[i].ySpeed;
+    for(i = 0; i < game.moveables.length; i++) {
+        if (game.moveables[i].type == "platforms") {
+            if (player1.x + player1.w > game.platforms[game.moveables[i].index].x && player1.x < game.platforms[game.moveables[i].index].x + game.platforms[game.moveables[i].index].w) {
+                if (player1.y == game.platforms[game.moveables[i].index].y - player1.h - 1) {
+                    player1.xSpeed += game.moveables[i].xSpeed;
+                    player1.ySpeed += game.moveables[i].ySpeed;
                 }
             }
         }
     }
     
     // Spike Collision Detection
-    for (i = 0; i < spikes.length; i++) {
-        if (spikes[i].r == 1) {
-            if (player1.x + player1.w > spikes[i].x && player1.x < spikes[i].x + spikes[i].w * 20) {
-                if (player1.y + player1.h > spikes[i].y - 21 && player1.y < spikes[i].y) {
+    for (i = 0; i < game.spikes.length; i++) {
+        if (game.spikes[i].r == 1) {
+            if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + game.spikes[i].w * 20) {
+                if (player1.y + player1.h > game.spikes[i].y - 21 && player1.y < game.spikes[i].y) {
                     player1.deaths++;
                     respawn();
                 }
             }
-        } else if (spikes[i].r == 2) {
-            if (player1.x + player1.w > spikes[i].x && player1.x < spikes[i].x + 21) {
-                if (player1.y + player1.h > spikes[i].y && player1.y < spikes[i].y + spikes[i].w * 20) {
+        } else if (game.spikes[i].r == 2) {
+            if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + 21) {
+                if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + game.spikes[i].w * 20) {
                     player1.deaths++;
                     respawn();
                 }
             }
-        } else if (spikes[i].r == 3) {
-            if (player1.x + player1.w > spikes[i].x && player1.x < spikes[i].x + spikes[i].w * 20) {
-                if (player1.y + player1.h > spikes[i].y && player1.y < spikes[i].y + 21) {
+        } else if (game.spikes[i].r == 3) {
+            if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + game.spikes[i].w * 20) {
+                if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + 21) {
                     player1.deaths++;
                     respawn();
                 }
             }
-        } else if (spikes[i].r == 4) {
-            if(player1.x + player1.w > spikes[i].x - 21 && player1.x < spikes[i].x) {
-                if (player1.y + player1.h > spikes[i].y && player1.y < spikes[i].y + spikes[i].w * 20) {
+        } else if (game.spikes[i].r == 4) {
+            if(player1.x + player1.w > game.spikes[i].x - 21 && player1.x < game.spikes[i].x) {
+                if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + game.spikes[i].w * 20) {
                     player1.deaths++;
                     respawn();
                 }

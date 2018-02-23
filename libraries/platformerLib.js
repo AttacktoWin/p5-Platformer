@@ -57,71 +57,71 @@ class moveable {
         this.index = i;
         this.runOnce = runOnce;
         if (this.type == "platforms") {
-            this.w = platforms[this.index].x + w;
-            this.h = platforms[this.index].y + h;
-            this.homeX = platforms[this.index].x;
-            this.homeY = platforms[this.index].y;
+            this.w = game.platforms[this.index].x + w;
+            this.h = game.platforms[this.index].y + h;
+            this.homeX = game.platforms[this.index].x;
+            this.homeY = game.platforms[this.index].y;
         } else if (this.type == "spikes") {
-            this.w = spikes[this.index].x + w;
-            this.h = spikes[this.index].y + h;
-            this.homeX = spikes[this.index].x;
-            this.homeY = spikes[this.index].y;
+            this.w = game.spikes[this.index].x + w;
+            this.h = game.spikes[this.index].y + h;
+            this.homeX = game.spikes[this.index].x;
+            this.homeY = game.spikes[this.index].y;
         }
     }
 
     logic() {
         if (this.type == "platforms") {
             if (this.w > this.homeX) {
-                if (platforms[this.index].x > this.w || platforms[this.index].x < this.homeX) {
+                if (game.platforms[this.index].x > this.w || game.platforms[this.index].x < this.homeX) {
                     this.xSpeed *= -1;
                 }
             } else if (this.w < this.homeX) {
-                if (platforms[this.index].x > this.homeX || platforms[this.index].x < this.w) {
+                if (game.platforms[this.index].x > this.homeX || game.platforms[this.index].x < this.w) {
                     this.xSpeed *= -1;
                 }
             }
 
             if (this.h > this.homeY) {
-                if (platforms[this.index].y > this.h || platforms[this.index].y < this.homeY) {
+                if (game.platforms[this.index].y > this.h || game.platforms[this.index].y < this.homeY) {
                     this.ySpeed *= -1;
                 }
             } else if (this.h < this.homeY) {
-                if (platforms[this.index].y > this.homeY || platforms[this.index].y < this.h) {
+                if (game.platforms[this.index].y > this.homeY || game.platforms[this.index].y < this.h) {
                     this.ySpeed *= -1;
                 }
             }
-            platforms[this.index].x += this.xSpeed;
-            platforms[this.index].y += this.ySpeed;
+            game.platforms[this.index].x += this.xSpeed;
+            game.platforms[this.index].y += this.ySpeed;
             if (this.runOnce) {
-                if (platforms[this.index].x == this.homeX && platforms[this.index].y == this.homeY) {
+                if (game.platforms[this.index].x == this.homeX && game.platforms[this.index].y == this.homeY) {
                     this.xSpeed = 0;
                     this.ySpeed = 0;
                 }
             }
         } else if (this.type == "spikes") {
             if (this.w > this.homeX) {
-                if (spikes[this.index].x > this.w || spikes[this.index].x < this.homeX) {
+                if (game.spikes[this.index].x > this.w || game.spikes[this.index].x < this.homeX) {
                     this.xSpeed *= -1;
                 }
             } else if (this.w < this.homeX) {
-                if (spikes[this.index].x > this.homeX || spikes[this.index].x < this.w) {
+                if (game.spikes[this.index].x > this.homeX || game.spikes[this.index].x < this.w) {
                     this.xSpeed *= -1;
                 }
             }
 
             if (this.h > this.homeY) {
-                if (spikes[this.index].y > this.h || spikes[this.index].y < this.homeY) {
+                if (game.spikes[this.index].y > this.h || game.spikes[this.index].y < this.homeY) {
                     this.ySpeed *= -1;
                 }
             } else if (this.h < this.homeY) {
-                if (spikes[this.index].y > this.homeY || spikes[this.index].y < this.h) {
+                if (game.spikes[this.index].y > this.homeY || game.spikes[this.index].y < this.h) {
                     this.ySpeed *= -1;
                 }
             }
-            spikes[this.index].x += this.xSpeed;
-            spikes[this.index].y += this.ySpeed;
+            game.spikes[this.index].x += this.xSpeed;
+            game.spikes[this.index].y += this.ySpeed;
             if (this.runOnce) {
-               if(spikes[this.index].x == this.homeX && spikes[this.index].y == this.homeY) {
+               if(game.spikes[this.index].x == this.homeX && game.spikes[this.index].y == this.homeY) {
                    this.xSpeed = 0;
                    this.ySpeed = 0;
                }
@@ -199,12 +199,4 @@ function spikeStrip(x, y, w, col) {
     for (i = x; i < ((w * 20) + x); i += 20) {
         spike(i, y, col);
     }
-}
-
-function clearLevel() {
-    platforms = [];
-    spikes = [];
-    moveables = [];
-    specials = [];
-    triggers = [];
 }
