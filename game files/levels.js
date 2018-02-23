@@ -173,17 +173,17 @@ function level6() {
     game.spikes.push(new spike(width - 25, 175, 6, 4, RED));
     game.spikes.push(new spike(25, 60, 3, 2, RED));
     game.moveables.push(new moveable(1.5, 0, 125, 0, "spikes", 3));
-    triggers.push(new trigger(125, 150, width - 150, 120, function () {
+    game.triggers.push(new trigger(125, 150, width - 150, 120, function () {
         game.moveables.push(new moveable(-12.5, 0, -625, 0, "spikes", 2, true));
-        triggers.splice(0, 1);
+        game.triggers.splice(0, 1);
     }));
-    triggers.push(new trigger(0, 0, 25, height, function () {
+    game.triggers.push(new trigger(0, 0, 25, height, function () {
         if (game.moveables.length > 1) {
             game.moveables.splice(1, 1);
             game.spikes[2].x = width - 25;
-            triggers.push(new trigger(125, 150, width - 150, 120, function () {
+            game.triggers.push(new trigger(125, 150, width - 150, 120, function () {
                 game.moveables.push(new moveable(-12.5, 0, -625, 0, "spikes", 2, true));
-                triggers.splice(1, 1);
+                game.triggers.splice(1, 1);
             }));
         }
     }));
@@ -213,19 +213,19 @@ function level7() {
     game.spikes.push(new spike(25, 550, 25, 1, RED));
     game.moveables.push(new moveable(1, 0, 50, 0, "platforms", 6));
     game.moveables.push(new moveable(2.5, 0, 100, 0, "platforms", 7));
-    triggers.push(new trigger(0, 0, 20, height, function () {
-        triggers.splice(1, triggers.length-1);
-        triggers.push(new trigger(125, 45, 60, 50, function () {
+    game.triggers.push(new trigger(0, 0, 20, height, function () {
+        game.triggers.splice(1, game.triggers.length-1);
+        game.triggers.push(new trigger(125, 45, 60, 50, function () {
             game.moveables.push(new moveable(0, 3, 0, 60, "spikes", 0, true));
-            triggers.splice(1, 1);
+            game.triggers.splice(1, 1);
         }));
-        triggers.push(new trigger(425, 45, 60, 50, function () {
+        game.triggers.push(new trigger(425, 45, 60, 50, function () {
             game.moveables.push(new moveable(0, 3, 0, 60, "spikes", 1, true));
-            triggers.splice(1, 1);
+            game.triggers.splice(1, 1);
         }));
-        triggers.push(new trigger(0, 100, width-100, 125, function() {
+        game.triggers.push(new trigger(0, 100, width-100, 125, function() {
             game.moveables.push(new moveable(-5, 0, (-width)-75, 0, "spikes", 2, true));
-            triggers.splice(1, 1);
+            game.triggers.splice(1, 1);
         }))
     }));
 }
@@ -249,20 +249,20 @@ function levelTest() {
     game.spikes.push(new spike(25, 550, 25, 1, RED));
     game.moveables.push(new moveable(1, 0, 50, 0, "platforms", 6));
     game.moveables.push(new moveable(2.5, 0, 100, 0, "platforms", 7));
-    triggers.push(new trigger(0, 0, 20, height, function () {
-        triggers.splice(1, triggers.length-1);
+    game.triggers.push(new trigger(0, 0, 20, height, function () {
+        game.triggers.splice(1, game.triggers.length-1);
         game.moveables.splice(2, 3);
-        triggers.push(new trigger(125, 45, 60, 50, function () {
+        game.triggers.push(new trigger(125, 45, 60, 50, function () {
             game.moveables.push(new moveable(0, 3, 0, 60, "spikes", 0, true));
-            triggers.splice(1, 1);
+            game.game.triggers.splice(1, 1);
         }));
-        triggers.push(new trigger(425, 45, 60, 50, function () {
+        game.triggers.push(new trigger(425, 45, 60, 50, function () {
             game.moveables.push(new moveable(0, 3, 0, 60, "spikes", 1, true));
-            triggers.splice(1, 1);
+            game.triggers.splice(1, 1);
         }));
-        triggers.push(new trigger(0, 100, width-100, 125, function() {
+        game.triggers.push(new trigger(0, 100, width-100, 125, function() {
             game.moveables.push(new moveable(-5, 0, (-width)-100, 0, "spikes", 2, true));
-            triggers.splice(1, 1);
+            game.triggers.splice(1, 1);
         }))
     }));
 }
