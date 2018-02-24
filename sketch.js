@@ -31,12 +31,7 @@ function draw() {
 	drawPlayer1();
     game.logic();
     game.show();
-    fill(255);
-    stroke(255);
-    noStroke();
-    textSize(16);
-    text("Deaths: " + player1.deaths, 15, 20);
-    text("Level " + game.level, width-75, 20);
+    
 }
 
 // EVENT FUNCTIONS

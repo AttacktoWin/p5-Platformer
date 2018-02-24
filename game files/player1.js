@@ -21,6 +21,9 @@ function initPlayer1() {
         moveables: [],
         specials: [],
         triggers: [],
+        timer = 0,
+        seconds = -1,
+        minutes = 0,
         clearLevel: function() {
             game.platforms = [];
             game.spikes = [];
@@ -35,6 +38,23 @@ function initPlayer1() {
             for(i = 0; i < game.triggers.length; i++) {
                 game.triggers[i].logic();
             }
+
+            game.seconds = parseInt(game.seconds);
+            game.minutes = parseInt(game.minutes);
+            if (game.timer%60 == 0) {
+                game.seconds++;
+            }
+            if (game.seconds%60 == 0) {
+                game.minutes++;
+                game.seconds = 0;
+            }
+            if (game.seconds < 10) {
+                game.seconds = "0" + game.seconds;
+            }
+            if (game.minutes < 10) {
+                game.minutes = "0" + game.seconds;
+            }
+            game.timer++;
         },
         show: function() {
             for(i = 0; i < game.platforms.length; i++) {
@@ -46,6 +66,14 @@ function initPlayer1() {
             for(i = 0; i < game.specials.length; i++) {
                 game.specials[i].show();
             }
+            fill(255);
+            stroke(255);
+            noStroke();
+            textSize(16);
+            text("Deaths: " + player1.deaths, 15, 20);
+            text("Level " + game.level, width-75, 20);
+            textSize(25);
+            text(game.minutes + ":" + game.seconds + "." + game.timer%60, width/2-20, 25);
         }
     };
 }
