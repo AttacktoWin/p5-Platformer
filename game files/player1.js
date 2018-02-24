@@ -52,7 +52,7 @@ function initPlayer1() {
                 game.seconds = "0" + game.seconds;
             }
             if (game.minutes < 10) {
-                game.minutes = "0" + game.seconds;
+                game.minutes = "0" + game.minutes;
             }
             game.timer++;
         },
