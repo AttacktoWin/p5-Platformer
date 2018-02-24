@@ -22,7 +22,7 @@ function initPlayer1() {
         specials: [],
         triggers: [],
         timer: 0,
-        seconds: -1,
+        seconds: 0,
         minutes: 0,
         clearLevel: function() {
             game.platforms = [];
