@@ -21,9 +21,9 @@ function initPlayer1() {
         moveables: [],
         specials: [],
         triggers: [],
-        timer = 0,
-        seconds = -1,
-        minutes = 0,
+        timer: 0,
+        seconds: -1,
+        minutes: 0,
         clearLevel: function() {
             game.platforms = [];
             game.spikes = [];
