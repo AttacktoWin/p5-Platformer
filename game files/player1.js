@@ -20,6 +20,7 @@ function initPlayer1() {
         spikes: [],
         moveables: [],
         specials: [],
+        keys: [],
         triggers: [],
         timer: 0,
         seconds: 0,
@@ -29,11 +30,15 @@ function initPlayer1() {
             game.spikes = [];
             game.moveables = [];
             game.specials = [];
+            game.keys = [];
             game.triggers = [];
         },
         logic: function() {
             for(i = 0; i < game.moveables.length; i++) {
                 game.moveables[i].logic();
+            }
+            for(i = 0; i < game.keys.length; i++) {
+                game.keys[i].logic();
             }
             for(i = 0; i < game.triggers.length; i++) {
                 game.triggers[i].logic();
@@ -70,6 +75,9 @@ function initPlayer1() {
             }
             for(i = 0; i < game.specials.length; i++) {
                 game.specials[i].show();
+            }
+            for(i = 0; i < game.keys.length; i++) {
+                game.keys[i].show();
             }
             fill(255);
             stroke(255);

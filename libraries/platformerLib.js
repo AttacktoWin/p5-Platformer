@@ -163,6 +163,43 @@ class trigger {
     }
 }
 
+class key {
+    constructor(x, y, doorX, doorY, w, h, index, col, doorCol) {
+        this.x = x;
+        this.y = y;
+        this.doorX = doorX;
+        this.doorY = doorY;
+        this.w = w;
+        this.h = h;
+        this.index = index;
+        this.col = col;
+        this.doorCol = doorCol;
+    }
+
+    logic() {
+        if (player1.x + player1.w > this.x && player1.x < this.x + 10) {
+            if (player1.y + player1.h > this.y && player1.y < this.y + 10) {
+                game.keys.splice(this.index, 1);
+            }
+        }
+        if (player1.x + player1.w > this.doorX && player1.x < this.doorX + this.w) {
+            if (player1.y + player1.h >= this.doorY - 1 && player1.y <= this.doorY + this.h - 1) {
+                player1.ySpeed = 0;
+                player1.y = this.doorY - player1.h - 1;
+                player1.jump = false;
+            }
+        }
+    }
+
+    show() {
+        fill(this.col);
+        noStroke();
+        rect(this.x, this.y, 10, 10);
+        fill(this.doorCol);
+        rect(this.doorX, this.doorY, this.w, this.h);
+    }
+}
+
 function powerUp(x, y, col, char) {
     fill(col);
     rect(x, y, 20, 20);
