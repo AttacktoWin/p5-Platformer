@@ -157,6 +157,7 @@ function movePlayer1() {
             if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + game.spikes[i].w * 20) {
                 if (player1.y + player1.h > game.spikes[i].y - 21 && player1.y < game.spikes[i].y) {
                     player1.deaths++;
+                    game.seconds = parseInt(game.seconds);
                     game.seconds += 10;
                     respawn();
                 }
@@ -165,6 +166,7 @@ function movePlayer1() {
             if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + 21) {
                 if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + game.spikes[i].w * 20) {
                     player1.deaths++;
+                    game.seconds = parseInt(game.seconds);
                     game.seconds += 10;
                     respawn();
                 }
@@ -173,6 +175,7 @@ function movePlayer1() {
             if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + game.spikes[i].w * 20) {
                 if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + 21) {
                     player1.deaths++;
+                    game.seconds = parseInt(game.seconds);
                     game.seconds += 10;
                     respawn();
                 }
@@ -181,6 +184,7 @@ function movePlayer1() {
             if(player1.x + player1.w > game.spikes[i].x - 21 && player1.x < game.spikes[i].x) {
                 if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + game.spikes[i].w * 20) {
                     player1.deaths++;
+                    game.seconds = parseInt(game.seconds);
                     game.seconds += 10;
                     respawn();
                 }
