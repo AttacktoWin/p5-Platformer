@@ -78,7 +78,7 @@ function title() {
             textSize(40);
             text("GOOD LUCK", width/2, height/2);
             textSize(15);
-            text("Arrow Keys or WASD", width/2, height/2 + 50);
+                text("Arrow Keys or WASD", width/2, height/2 + 50);
         }
     });
     game.specials.push(new arrow(width - 10, 530));
