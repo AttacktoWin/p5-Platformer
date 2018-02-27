@@ -19,7 +19,7 @@ function setup() {
 	initPlayer1();
     game.clearLevel();
 
-    level1();
+    title();
 }
 
 // DRAW FUNCTION - Loops @ 60FPS by default
@@ -29,7 +29,9 @@ function draw() {
 	// DRAW
     background(GREEN);
 	drawPlayer1();
-    game.logic();
+    if (game.level != "start") {
+       game.logic();
+    }
     game.show();
     
 }

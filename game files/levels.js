@@ -1,5 +1,8 @@
 function levelUp() {
-    if (game.level == 1) {
+    if (game.level == "start") {
+        level1();
+        game.level = 1;
+    } else if (game.level == 1) {
         level2();
         game.level = 2;
     } else if (game.level == 2) {
@@ -59,6 +62,26 @@ function levelDown() {
         levelTest()
         game.level = "test";
     }
+}
+
+function title() {
+    player1.homeX = 1;
+    player1.homeY = 549;
+    respawn();
+    game.clearLevel();
+    game.platforms.push(new platform(0, 550, width, height, GREY, ORANGE));
+    game.specials.push({
+        show: function() {
+            fill(255);
+            noStroke();
+            textAlign(CENTER);
+            textSize(40);
+            text("GOOD LUCK", width/2, height/2);
+            textSize(15);
+            text("Arrow Keys or WASD", width/2, height/2 + 50);
+        }
+    });
+    game.specials.push(new arrow(width - 10, 530));
 }
 
 function level1() {

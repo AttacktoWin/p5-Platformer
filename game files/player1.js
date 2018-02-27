@@ -15,7 +15,7 @@ function initPlayer1() {
         deaths: 0
     };
     game = {
-        level: 1,
+        level: "start",
         platforms: [],
         spikes: [],
         moveables: [],
