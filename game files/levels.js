@@ -18,9 +18,12 @@ function levelUp() {
         level7();
         game.level = 7;
     } else if (game.level == 7) {
-        level7();
-        game.level = 7;
-    } 
+        level8();
+        game.level = 8;
+    } else if (game.level == 8) {
+        level8();
+        level = 8;
+    }
     else if (game.level == "test") {
         levelTest();
         game.level = "test";
@@ -48,6 +51,9 @@ function levelDown() {
     } else if (game.level == 7) {
         level6();
         game.level = 6;
+    } else if (game.level == 8) {
+        level7();
+        game.level = 7;
     }
     else if (game.level == "test") {
         levelTest()
@@ -195,7 +201,7 @@ function level7() {
         player1.homeY = 50;
     } else if (player1.x < 0) {
         player1.homeX = width - 2 - player1.w;
-        player.homeY = 549;
+        player1.homeY = 549;
     }
     respawn();
     game.clearLevel();
@@ -230,10 +236,14 @@ function level7() {
     }));
 }
 
-function levelTest() {
-    player1.homeX = 1;
-    player1.homeY = 549;
-    game.level = "test";
+function level8() {
+    if (player1.x > width) {
+        player1.homeX = 1;
+        player1.homeY = 549;
+    } else if (player1. x < 0) {
+        player1.homeX = width - 2 - player1.w;
+        player1.homeY = 549;
+    }
     respawn();
     game.clearLevel();
     game.platforms.push(new platform(0, 550, width, height, GREY, ORANGE));
@@ -242,7 +252,7 @@ function levelTest() {
     game.platforms.push(new platform(width-100, 100, 25, 450, GREY, ORANGE));
     game.platforms.push(new platform(200, 400, 500, 25, GREY, ORANGE));
     game.platforms.push(new platform(width-25, 0, 25, 475, GREY, ORANGE));
-    game.platforms.push(new platform(250, 300, 450, 25, GREY, ORANGE));
+    game.platforms.push(new platform(250, 275, 450, 25, GREY, ORANGE));
     game.platforms.push(new platform(50, 100, 75, 15, GREY, BLUE)); // i = 7
     game.platforms.push(new platform(250, 125, 75, 15, GREY, ORANGE)); // i = 8
     game.platforms.push(new platform(450, 125, 75, 15, GREY, ORANGE)); // i = 9
@@ -253,18 +263,22 @@ function levelTest() {
     game.spikes.push(new spike(250, 500, 3, 3, RED));
     game.spikes.push(new spike(400, 500, 3, 3, RED));
     game.spikes.push(new spike(700, 505, 2, 4, RED));
-    game.spikes.push(new spike(275, 325, 15, 3, RED));
-    game.spikes.push(new spike(250, 300, 21, 1, RED));
+    game.spikes.push(new spike(255, 300, 2, 3, RED));
+    game.spikes.push(new spike(330, 300, 2, 3, RED));
+    game.spikes.push(new spike(410, 300, 2, 3, RED));
+    game.spikes.push(new spike(490, 300, 2, 3, RED));
+    game.spikes.push(new spike(570, 300, 2, 3, RED));
+    game.spikes.push(new spike(250, 275, 21, 1, RED));
     game.spikes.push(new spike(370, 45, 2, 1, RED));
     game.spikes.push(new spike(370, 45, 2, 3, RED));
     game.spikes.push(new spike(560, 45, 2, 1, RED));
     game.spikes.push(new spike(560, 45, 2, 3, RED));
-    game.moveables.push(new moveable(0, 2, 0, 200, "spikes", 6));
-    game.moveables.push(new moveable(0, 2, 0, 200, "spikes", 7));
-    game.moveables.push(new moveable(0, 2, 0, 200, "spikes", 8));
-    game.moveables.push(new moveable(0, 2, 0, 200, "spikes", 9));
+    game.moveables.push(new moveable(0, 2, 0, 200, "spikes", 10));
+    game.moveables.push(new moveable(0, 2, 0, 200, "spikes", 11));
+    game.moveables.push(new moveable(0, 2, 0, 200, "spikes", 12));
+    game.moveables.push(new moveable(0, 2, 0, 200, "spikes", 13));
     game.keys.push(new key(675, 375, 725, 100, 50, 15, 0, ORANGE, BROWN));
-    game.triggers.push(new trigger(0, 0, 25, height, function() {
+    game.triggers.push(new trigger(0, 0, 15, height, function() {
         game.triggers.splice(1, game.triggers.length);
         game.triggers.push(new trigger(100, 500, 60, 100, function() {
             game.moveables.push(new moveable(0, 1, 0, 25, "spikes", 0, true));
@@ -272,8 +286,32 @@ function levelTest() {
         }));
         game.triggers.push(new trigger(250, 500, 60, 100, function() {
             game.moveables.push(new moveable(0, 1, 0, 25, "spikes", 1, true));
-            game.triggers.splice(2, 1);
+            game.triggers.splice(1, 1);
+        }));
+        game.triggers.push(new trigger(400, 500, 60, 100, function() {
+            game.moveables.push(new moveable(0, 1, 0, 25, "spikes", 2, true));
+            game.triggers.splice(1, 1);
+        }));
+        
+        game.triggers.push(new trigger(650, 500, 50, 100, function() {
+            game.moveables.push(new moveable(-2, 0, -50, 0, "spikes", 3, true));
+            game.triggers.splice(1, 1);
+        }));
+        game.triggers.push(new trigger(600, 375, 100, 50, function() {
+            game.spikes[5].r = 1;
+            game.spikes[5].y += 100;
+            game.spikes[7].r = 1;
+            game.spikes[7].y += 100;
+            game.triggers.splice(1, 1);
         }));
     }));
-    
+}
+
+function levelTest() {
+    player1.homeX = 1;
+    player1.homeY = 549;
+    game.level = "test";
+    respawn();
+    game.clearLevel();
+    game.platforms.push(new platform(0, 550, width, height, GREY, ORANGE));
 }
