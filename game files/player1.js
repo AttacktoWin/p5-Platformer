@@ -3,8 +3,8 @@ function initPlayer1() {
     player1 = {
         x: 200,
         y: 580,
-        w: 20,
-        h: 20,
+        w: 30,
+        h: 30,
         xSpeed: 0,
         ySpeed: 0,
         a: 1,
@@ -83,12 +83,12 @@ function initPlayer1() {
             stroke(255);
             noStroke();
             textAlign(LEFT);
-            textSize(16);
-            text("Deaths: " + player1.deaths, 15, 20);
-            text("Level " + game.level, width-75, 20);
+            textSize(30);
+            text("Deaths: " + player1.deaths, 15, 30);
+            text("Level " + game.level, width-150, 30);
             textAlign(CENTER);
-            textSize(25);
-            text(game.minutes + ":" + game.seconds + "." + game.timer, width/2, 25);
+            textSize(50);
+            text(game.minutes + ":" + game.seconds + "." + game.timer, width/2, 50);
         }
     };
 }
@@ -103,16 +103,16 @@ function respawn() {
 function movePlayer1() {
     // Move Horizontally on Key is Down
     if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
-        player1.xSpeed = -5;
+        player1.xSpeed = -10;
     } else if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
-        player1.xSpeed = 5;
+        player1.xSpeed = 10;
     }
 
     player1.x += player1.xSpeed;
     player1.xSpeed = 0;
     // Move Vertically - Gravity
-    if (player1.ySpeed > 20) {
-        player1.ySpeed = 20;
+    if (player1.ySpeed > 40) {
+        player1.ySpeed = 40;
     }
     player1.y += player1.ySpeed; // Move Vertically
     player1.ySpeed += player1.a; // Apply Gravity
@@ -162,8 +162,8 @@ function movePlayer1() {
     // Spike Collision Detection
     for (i = 0; i < game.spikes.length; i++) {
         if (game.spikes[i].r == 1) {
-            if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + game.spikes[i].w * 20) {
-                if (player1.y + player1.h > game.spikes[i].y - 21 && player1.y < game.spikes[i].y) {
+            if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + game.spikes[i].w * 40) {
+                if (player1.y + player1.h > game.spikes[i].y - 41 && player1.y < game.spikes[i].y) {
                     player1.deaths++;
                     game.seconds = parseInt(game.seconds);
                     game.seconds += 10;
@@ -171,8 +171,8 @@ function movePlayer1() {
                 }
             }
         } else if (game.spikes[i].r == 2) {
-            if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + 21) {
-                if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + game.spikes[i].w * 20) {
+            if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + 41) {
+                if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + game.spikes[i].w * 40) {
                     player1.deaths++;
                     game.seconds = parseInt(game.seconds);
                     game.seconds += 10;
@@ -180,8 +180,8 @@ function movePlayer1() {
                 }
             }
         } else if (game.spikes[i].r == 3) {
-            if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + game.spikes[i].w * 20) {
-                if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + 21) {
+            if (player1.x + player1.w > game.spikes[i].x && player1.x < game.spikes[i].x + game.spikes[i].w * 40) {
+                if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + 41) {
                     player1.deaths++;
                     game.seconds = parseInt(game.seconds);
                     game.seconds += 10;
@@ -189,8 +189,8 @@ function movePlayer1() {
                 }
             }
         } else if (game.spikes[i].r == 4) {
-            if(player1.x + player1.w > game.spikes[i].x - 21 && player1.x < game.spikes[i].x) {
-                if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + game.spikes[i].w * 20) {
+            if(player1.x + player1.w > game.spikes[i].x - 41 && player1.x < game.spikes[i].x) {
+                if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + game.spikes[i].w * 40) {
                     player1.deaths++;
                     game.seconds = parseInt(game.seconds);
                     game.seconds += 10;
@@ -223,7 +223,7 @@ function jumpPlayer1() {
     // Jump on UP_ARROW
     if (!player1.jump) {
         if (keyCode == UP_ARROW || keyCode == 87 || keyCode == 32) {
-            player1.ySpeed = -20;
+            player1.ySpeed = -25;
             player1.jump = true;
         }
     }

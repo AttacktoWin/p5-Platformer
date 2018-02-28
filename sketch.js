@@ -13,7 +13,7 @@ let BROWN = "#aa6c39";
 
 // SETUP FUNCTION - Runs once at beginning of program
 function setup() {
-    createCanvas(800, 600);
+    createCanvas(1920, 1080);
 
 	// Initialize Global Variables
 	initPlayer1();
