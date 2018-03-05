@@ -25,7 +25,7 @@ function initPlayer1() {
         timer: 0,
         seconds: 0,
         minutes: 0,
-        clearLevel: function() {
+        clearLevel: function () {
             game.platforms = [];
             game.spikes = [];
             game.moveables = [];
@@ -33,14 +33,14 @@ function initPlayer1() {
             game.keys = [];
             game.triggers = [];
         },
-        logic: function() {
-            for(i = 0; i < game.moveables.length; i++) {
+        logic: function () {
+            for (i = 0; i < game.moveables.length; i++) {
                 game.moveables[i].logic();
             }
-            for(i = 0; i < game.keys.length; i++) {
+            for (i = 0; i < game.keys.length; i++) {
                 game.keys[i].logic();
             }
-            for(i = 0; i < game.triggers.length; i++) {
+            for (i = 0; i < game.triggers.length; i++) {
                 game.triggers[i].logic();
             }
 
@@ -62,21 +62,21 @@ function initPlayer1() {
                 game.minutes = "0" + game.minutes;
             }
             game.timer++;
-            if(game.timer < 10) {
+            if (game.timer < 10) {
                 game.timer = "0" + game.timer;
             }
         },
-        show: function() {
-            for(i = 0; i < game.platforms.length; i++) {
+        show: function () {
+            for (i = 0; i < game.platforms.length; i++) {
                 game.platforms[i].show();
             }
-            for(i = 0; i < game.spikes.length; i++) {
+            for (i = 0; i < game.spikes.length; i++) {
                 game.spikes[i].show();
             }
-            for(i = 0; i < game.specials.length; i++) {
+            for (i = 0; i < game.specials.length; i++) {
                 game.specials[i].show();
             }
-            for(i = 0; i < game.keys.length; i++) {
+            for (i = 0; i < game.keys.length; i++) {
                 game.keys[i].show();
             }
             fill(255);
@@ -85,10 +85,10 @@ function initPlayer1() {
             textAlign(LEFT);
             textSize(30);
             text("Deaths: " + player1.deaths, 15, 30);
-            text("Level " + game.level, width-150, 30);
+            text("Level " + game.level, width - 150, 30);
             textAlign(CENTER);
             textSize(50);
-            text(game.minutes + ":" + game.seconds + "." + game.timer, width/2, 50);
+            text(game.minutes + ":" + game.seconds + "." + game.timer, width / 2, 50);
         }
     };
 }
@@ -148,7 +148,7 @@ function movePlayer1() {
     }
 
     // Moveables Collision Detection
-    for(i = 0; i < game.moveables.length; i++) {
+    for (i = 0; i < game.moveables.length; i++) {
         if (game.moveables[i].type == "platforms") {
             if (player1.x + player1.w > game.platforms[game.moveables[i].index].x && player1.x < game.platforms[game.moveables[i].index].x + game.platforms[game.moveables[i].index].w) {
                 if (player1.y == game.platforms[game.moveables[i].index].y - player1.h - 1) {
@@ -158,7 +158,7 @@ function movePlayer1() {
             }
         }
     }
-    
+
     // Spike Collision Detection
     for (i = 0; i < game.spikes.length; i++) {
         if (game.spikes[i].r == 1) {
@@ -189,7 +189,7 @@ function movePlayer1() {
                 }
             }
         } else if (game.spikes[i].r == 4) {
-            if(player1.x + player1.w > game.spikes[i].x - 41 && player1.x < game.spikes[i].x) {
+            if (player1.x + player1.w > game.spikes[i].x - 41 && player1.x < game.spikes[i].x) {
                 if (player1.y + player1.h > game.spikes[i].y && player1.y < game.spikes[i].y + game.spikes[i].w * 40) {
                     player1.deaths++;
                     game.seconds = parseInt(game.seconds);
@@ -227,4 +227,9 @@ function jumpPlayer1() {
             player1.jump = true;
         }
     }
+}
+
+function debugTeleport() {
+    player1.x = mouseX;
+    player1.y = mouseY;
 }

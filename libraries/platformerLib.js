@@ -121,10 +121,10 @@ class moveable {
             game.spikes[this.index].x += this.xSpeed;
             game.spikes[this.index].y += this.ySpeed;
             if (this.runOnce) {
-               if(game.spikes[this.index].x == this.homeX && game.spikes[this.index].y == this.homeY) {
-                   this.xSpeed = 0;
-                   this.ySpeed = 0;
-               }
+                if (game.spikes[this.index].x == this.homeX && game.spikes[this.index].y == this.homeY) {
+                    this.xSpeed = 0;
+                    this.ySpeed = 0;
+                }
             }
         }
     }
@@ -177,8 +177,8 @@ class key {
     }
 
     logic() {
-        if (player1.x + player1.w > this.x && player1.x < this.x + 10) {
-            if (player1.y + player1.h > this.y && player1.y < this.y + 10) {
+        if (player1.x + player1.w > this.x && player1.x < this.x + 15) {
+            if (player1.y + player1.h > this.y && player1.y < this.y + 15) {
                 game.keys.splice(this.index, 1);
             }
         }
@@ -194,7 +194,7 @@ class key {
     show() {
         fill(this.col);
         noStroke();
-        rect(this.x, this.y, 10, 10);
+        rect(this.x, this.y, 15, 15);
         fill(this.doorCol);
         rect(this.doorX, this.doorY, this.w, this.h);
     }

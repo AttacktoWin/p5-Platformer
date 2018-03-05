@@ -15,8 +15,8 @@ let BROWN = "#aa6c39";
 function setup() {
     createCanvas(1920, 1080);
 
-	// Initialize Global Variables
-	initPlayer1();
+    // Initialize Global Variables
+    initPlayer1();
     game.clearLevel();
 
     title();
@@ -24,22 +24,25 @@ function setup() {
 
 // DRAW FUNCTION - Loops @ 60FPS by default
 function draw() {
-	// LOGIC
-	movePlayer1();
-	// DRAW
+    // LOGIC
+    movePlayer1();
+    // DRAW
     background(GREEN);
-	drawPlayer1();
+    drawPlayer1();
     if (game.level != "start") {
-       game.logic();
+        game.logic();
     }
     game.show();
-    
+
 }
 
 // EVENT FUNCTIONS
 function keyPressed() {
-	jumpPlayer1();
+    jumpPlayer1();
     if (keyCode === 82) {
         respawn();
+    }
+    if (keyCode === 13) {
+        debugTeleport();
     }
 }
