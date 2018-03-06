@@ -3,11 +3,11 @@ function initPlayer1() {
     player1 = {
         x: 200,
         y: 580,
-        w: 30,
-        h: 30,
+        w: (width/100*2),
+        h: (width/100*2),
         xSpeed: 0,
         ySpeed: 0,
-        a: 1,
+        a: (width/100*0.1),
         col: BLUE,
         homeX: 0,
         homeY: 0,
@@ -84,11 +84,11 @@ function initPlayer1() {
             noStroke();
             textAlign(LEFT);
             textSize(30);
-            text("Deaths: " + player1.deaths, 15, 30);
-            text("Level " + game.level, width - 150, 30);
+            text("Deaths: " + player1.deaths, (player1.w*2), (player1.w*1.25));
+            text("Level " + game.level, width - (player1.w*6), (player1.w*1.25));
             textAlign(CENTER);
             textSize(50);
-            text(game.minutes + ":" + game.seconds + "." + game.timer, width / 2, 50);
+            text(game.minutes + ":" + game.seconds + "." + game.timer, width / 2, (player1.w*1.5));
             
             fill(0, 20, 255, 50);
             ellipse(jumpButton.x, jumpButton.y, jumpButton.r);
@@ -111,16 +111,16 @@ function respawn() {
 function movePlayer1() {
     // Move Horizontally on Key is Down
     if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
-        player1.xSpeed = -10;
+        player1.xSpeed = -(player1.w/2);
     } else if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
-        player1.xSpeed = 10;
+        player1.xSpeed = (player1.w/2);
     }
 
     player1.x += player1.xSpeed;
     player1.xSpeed = 0;
     // Move Vertically - Gravity
-    if (player1.ySpeed > 40) {
-        player1.ySpeed = 40;
+    if (player1.ySpeed > player1.w) {
+        player1.ySpeed = player1.w;
     }
     player1.y += player1.ySpeed; // Move Vertically
     player1.ySpeed += player1.a; // Apply Gravity
@@ -231,7 +231,7 @@ function jumpPlayer1() {
     // Jump on UP_ARROW
     if (!player1.jump) {
         if (keyCode == UP_ARROW || keyCode == 87 || keyCode == 32) {
-            player1.ySpeed = -25;
+            player1.ySpeed = -(player1.w*1.25);
             player1.jump = true;
         }
     }
