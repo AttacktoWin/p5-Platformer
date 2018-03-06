@@ -89,8 +89,16 @@ function initPlayer1() {
             textAlign(CENTER);
             textSize(50);
             text(game.minutes + ":" + game.seconds + "." + game.timer, width / 2, 50);
+            
+            fill(0, 20, 255, 50);
+            ellipse(jumpButton.x, jumpButton.y, jumpButton.r);
         }
     };
+    jumpButton = {
+        x: width - (width/100*10),
+        y: height - (height/100*10),
+        r: 150
+    }
 }
 
 function respawn() {

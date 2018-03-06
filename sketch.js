@@ -46,3 +46,20 @@ function keyPressed() {
         debugTeleport();
     }
 }
+
+
+function touchStarted() {
+    for(var i = 0; i < touches.length; i++) {
+        if (dist(touches[i].x, touches[i].y, jumpButton.x, jumpButton.y) < jumpButton.r) {
+            jumpPlayer1();
+        }
+    }
+}
+
+function touchEnded() {
+    for(var i = 0; i < touches.length; i++) {
+        if(dist(touches[i].x, touches[i].y, jumpButton.x, jumpButton.y) > jumpButton.r) {
+            player1.jump = false;
+        }
+    }
+}
