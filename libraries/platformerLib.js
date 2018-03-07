@@ -30,19 +30,19 @@ class spike {
         noStroke();
         fill(this.col);
         if (this.r == 1 || this.r == 3) {
-            for (var x1 = this.x; x1 < ((this.w * 40) + this.x); x1 += 40) {
+            for (var x1 = this.x; x1 < ((this.w * (player1.w*1)) + this.x); x1 += (player1.w*1)) {
                 if (this.r == 1) {
-                    triangle(x1, this.y, x1 + 40, this.y, x1 + 20, this.y - 40);
+                    triangle(x1, this.y, x1 + (player1.w*1), this.y, x1 + (player1.w*0.5), this.y - (player1.w*1));
                 } else if (this.r == 3) {
-                    triangle(x1, this.y, x1 + 40, this.y, x1 + 20, this.y + 40);
+                    triangle(x1, this.y, x1 + (player1.w*1), this.y, x1 + (player1.w*0.5), this.y + (player1.w*1));
                 }
             }
         } else if (this.r == 2 || this.r == 4) {
-            for (var y1 = this.y; y1 < ((this.w * 40) + this.y); y1 += 40) {
+            for (var y1 = this.y; y1 < ((this.w * (player1.w*1)) + this.y); y1 += (player1.w*1)) {
                 if (this.r == 2) {
-                    triangle(this.x, y1, this.x + 40, y1 + 20, this.x, y1 + 40);
+                    triangle(this.x, y1, this.x + (player1.w*1), y1 + (player1.w*0.5), this.x, y1 + (player1.w*1));
                 } else if (this.r == 4) {
-                    triangle(this.x, y1, this.x - 40, y1 + 20, this.x, y1 + 40);
+                    triangle(this.x, y1, this.x - (player1.w*1), y1 + (player1.w*0.5), this.x, y1 + (player1.w*1));
                 }
             }
         }
