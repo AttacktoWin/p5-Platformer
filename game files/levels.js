@@ -307,6 +307,10 @@ function level8() {
     game.keys.push(new key(width - 275, height / 2 - 15, width - 100, 150, 50, 15, 0, ORANGE, BROWN));
     game.triggers.push(new trigger(0, 0, 2, height, function () {
         game.triggers.splice(1, game.triggers.length - 1);
+        game.spikes[5].r = 3;
+        game.spikes[5].y = 375;
+        game.spikes[7].r = 3;
+        game.spikes[7].y = 375;
         game.triggers.push(new trigger(100, height - 150, 180, 200, function () {
             game.moveables.push(new moveable(0, 7, 0, 115, "spikes", 0, true));
             game.triggers.splice(1, 1);
@@ -326,9 +330,9 @@ function level8() {
         }));
         game.triggers.push(new trigger(1550, height / 2 - 25, 100, 50, function () {
             game.spikes[5].r = 1;
-            game.spikes[5].y += 37.5;
+            game.spikes[5].y += 185;
             game.spikes[7].r = 1;
-            game.spikes[7].y += 37.5;
+            game.spikes[7].y += 185;
             game.triggers.splice(1, 1);
         }));
     }));
