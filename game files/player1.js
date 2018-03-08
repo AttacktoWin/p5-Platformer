@@ -83,11 +83,11 @@ function initPlayer1() {
             stroke(255);
             noStroke();
             textAlign(LEFT);
-            textSize(30);
+            textSize((player1.w*0.75));
             text("Deaths: " + player1.deaths, (player1.w*2), (player1.w*1.25));
             text("Level " + game.level, width - (player1.w*6), (player1.w*1.25));
             textAlign(CENTER);
-            textSize(50);
+            textSize((player1.w*1.5));
             text(game.minutes + ":" + game.seconds + "." + game.timer, width / 2, (player1.w*1.5));
             
             fill(0, 20, 255, 50);
@@ -97,7 +97,7 @@ function initPlayer1() {
     jumpButton = {
         x: width - (width/100*10),
         y: height - (height/100*10),
-        r: 150
+        r: player1.w*4
     }
 }
 

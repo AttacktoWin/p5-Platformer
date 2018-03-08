@@ -13,6 +13,7 @@ let BROWN = "#aa6c39";
 
 // SETUP FUNCTION - Runs once at beginning of program
 function setup() {
+    screen.orientation.lock('landscape');
     createCanvas(innerWidth, innerHeight);
 
     // Initialize Global Variables
@@ -54,6 +55,7 @@ function touchStarted() {
             jumpPlayer1();
         }
     }
+    return false;
 }
 
 function touchEnded() {
@@ -62,4 +64,5 @@ function touchEnded() {
             player1.jump = false;
         }
     }
+    return false;
 }

@@ -184,7 +184,7 @@ function level6() {
         player1.homeY = height - (player1.w*2) - player1.h;
     } else if (player1.x < 0) {
         player1.homeX = width - 2 - player1.w;
-        player1.homeY = 150 - player1.h;
+        player1.homeY = (player1.w*6) - player1.h;
     }
     respawn();
     game.clearLevel();
@@ -217,7 +217,7 @@ function level6() {
 function level7() {
     if (player1.x > width) {
         player1.homeX = 1;
-        player1.homeY = 150 - player1.h - 1;
+        player1.homeY = (player1.w*6) - player1.h - 1;
     } else if (player1.x < 0) {
         player1.homeX = width - 2 - player1.w;
         player1.homeY = height - (player1.w*2) - player1.h;
@@ -225,31 +225,31 @@ function level7() {
     respawn();
     game.clearLevel();
     game.platforms.push(new platform(0, height - (player1.w*2), width, height, GREY, ORANGE));
-    game.platforms.push(new platform(0, 150, (player1.w*2), height, GREY, ORANGE));
-    game.platforms.push(new platform(width - (player1.w*2), -500, (player1.w*2), 1375, GREY, ORANGE));
-    game.platforms.push(new platform((player1.w*2), 150, width - 250, (player1.w*2), GREY, ORANGE));
-    game.platforms.push(new platform(0, 0, width, 25, GREY, ORANGE));
-    game.platforms.push(new platform(150, 325, width - 200, (player1.w*2), GREY, ORANGE));
-    game.platforms.push(new platform(75, 475, 125, 25, GREY, BLUE));
-    game.platforms.push(new platform(250, 575, 125, 25, GREY, BLUE));
-    game.spikes.push(new spike(125, 25, 3, 3, RED));
-    game.spikes.push(new spike(425, 25, 3, 3, RED));
-    game.spikes.push(new spike(width - (player1.w*2), 200, 3, 4, RED));
+    game.platforms.push(new platform(0, (player1.w*6), (player1.w*2), height, GREY, ORANGE));
+    game.platforms.push(new platform(width - (player1.w*2), -(player1.w*10), (player1.w*2), (player1.w*29), GREY, ORANGE));
+    game.platforms.push(new platform((player1.w*2), (player1.w*6), width - (player1.w*7), (player1.w*1.5), GREY, ORANGE));
+    game.platforms.push(new platform(0, 0, width, (player1.w), GREY, ORANGE));
+    game.platforms.push(new platform((player1.w*6), (player1.w*11), width - (player1.w*8), (player1.w*1.5), GREY, ORANGE));
+    game.platforms.push(new platform((player1.w*2), (player1.w*15), (player1.w*3), (player1.w*0.75), GREY, BLUE));
+    game.platforms.push(new platform((player1.w*6), (player1.w*18), (player1.w*3), (player1.w*0.75), GREY, BLUE));
+    game.spikes.push(new spike((player1.w*4), (player1.w), 3, 3, RED));
+    game.spikes.push(new spike((player1.w*9), (player1.w), 3, 3, RED));
+    game.spikes.push(new spike(width - (player1.w*2), (player1.w*8), 3, 4, RED));
     game.spikes.push(new spike((player1.w*2), height - (player1.w*2), 25, 1, RED));
-    game.moveables.push(new moveable(2, 0, 150, 0, "platforms", 6));
-    game.moveables.push(new moveable(5, 0, 300, 0, "platforms", 7));
+    game.moveables.push(new moveable((player1.w*0.1), 0, (player1.w*6), 0, "platforms", 6));
+    game.moveables.push(new moveable((player1.w*0.25), 0, (player1.w*12), 0, "platforms", 7));
     game.triggers.push(new trigger(0, 0, 2, height, function () {
         game.triggers.splice(1, game.triggers.length - 1);
-        game.triggers.push(new trigger(145, (player1.w*2), 180, 150, function () {
-            game.moveables.push(new moveable(0, 5, 0, 75, "spikes", 0, true));
+        game.triggers.push(new trigger((player1.w*4) - 5, (player1.w*2), (player1.w*3), (player1.w*6), function () {
+            game.moveables.push(new moveable(0, (player1.w*0.1), 0, (player1.w*4), "spikes", 0, true));
             game.triggers.splice(1, 1);
         }));
-        game.triggers.push(new trigger(425, (player1.w*2), 180, 150, function () {
-            game.moveables.push(new moveable(0, 5, 0, 75, "spikes", 1, true));
+        game.triggers.push(new trigger((player1.w*9) - 5, (player1.w*2), (player1.w*3), (player1.w*6), function () {
+            game.moveables.push(new moveable(0, (player1.w*0.1), 0, (player1.w*4), "spikes", 1, true));
             game.triggers.splice(1, 1);
         }));
-        game.triggers.push(new trigger(0, 200, width - 100, 200, function () {
-            game.moveables.push(new moveable(-10, 0, (-width) + 75, 0, "spikes", 2, true));
+        game.triggers.push(new trigger(0, (player1.w*7.5), width, (player1.w*6), function () {
+            game.moveables.push(new moveable(-(player1.w*0.5), 0, (-width) + (player1.w*2), 0, "spikes", 2, true));
             game.triggers.splice(1, 1);
         }))
     }));
@@ -266,25 +266,24 @@ function level8() {
     respawn();
     game.clearLevel();
     game.platforms.push(new platform(0, height - (player1.w*2), width, height, GREY, ORANGE));
-    game.platforms.push(new platform(0, 0, (player1.w*2), height - 200, GREY, ORANGE));
-    game.platforms.push(new platform((player1.w*2), height - 250, width - 350, (player1.w*2), GREY, ORANGE));
-    game.platforms.push(new platform(width - 150, 150, (player1.w*2), height, GREY, ORANGE));
-    game.platforms.push(new platform(200, height / 2 + 25, width - 350, (player1.w*2), GREY, ORANGE));
-    game.platforms.push(new platform(width - (player1.w*2), 0, (player1.w*2), height - 200, GREY, ORANGE));
-    game.platforms.push(new platform(250, 325, width - 400, (player1.w*2), GREY, ORANGE));
-    game.platforms.push(new platform((player1.w*2), 150, 125, 25, GREY, BLUE)); // i = 7
-    game.platforms.push(new platform(250, 150, 125, 25, GREY, ORANGE));
-    game.platforms.push(new platform(600, 150, 125, 25, GREY, ORANGE));
-    game.platforms.push(new platform(975, 150, 125, 25, GREY, ORANGE));
-    game.platforms.push(new platform(width - 525, 150, 125, 25, GREY, ORANGE));
+    game.platforms.push(new platform(0, 0, (player1.w*2), height - (player1.w*6), GREY, ORANGE));
+    game.platforms.push(new platform((player1.w*2), height - (player1.w*7.5), width - (player1.w*11), (player1.w*1.5), GREY, ORANGE));
+    game.platforms.push(new platform(width - (player1.w*6), (player1.w*6), (player1.w*1.5), height, GREY, ORANGE));
+    game.platforms.push(new platform((player1.w*6), (player1.w*14), width - (player1.w*12), (player1.w*1.5), GREY, ORANGE));
+    game.platforms.push(new platform(width - (player1.w*2), 0, (player1.w*2), height - (player1.w*6), GREY, ORANGE));
+    game.platforms.push(new platform((player1.w*7), (player1.w*8), width - (player1.w*13), (player1.w*1.5), GREY, ORANGE));
+    game.platforms.push(new platform((player1.w*2), (player1.w*4.5), (player1.w*3), (player1.w * 0.75), GREY, BLUE));
+    game.platforms.push(new platform((player1.w*9), (player1.w*4.5), (player1.w*3.5), (player1.w*0.75), GREY, ORANGE));
+    game.platforms.push(new platform((player1.w*21), (player1.w*4.5), (player1.w*3.5), (player1.w*0.75), GREY, ORANGE));
+    game.platforms.push(new platform((player1.w*33), (player1.w*4.5), (player1.w*3.5), (player1.w*0.75), GREY, ORANGE));
     game.platforms.push(new platform(25, 0, width - 25, 25, GREY, ORANGE));
-    game.moveables.push(new moveable(0, 3, 0, 325, "platforms", 7));
-    game.spikes.push(new spike(100, height - 200, 3, 3, RED));
-    game.spikes.push(new spike(250, height - 200, 3, 3, RED));
-    game.spikes.push(new spike(400, height - 200, 3, 3, RED));
-    game.spikes.push(new spike(width - 150, height - 175, 3, 4, RED));
-    game.spikes.push(new spike(255, 375, 2, 3, RED));
-    game.spikes.push(new spike(385, 375, 2, 3, RED));
+    game.moveables.push(new moveable(0, (player1.w*0.075), 0, (player1.w*8.5), "platforms", 7));
+    game.spikes.push(new spike((player1.w*4), height - (player1.w*6), 3, 3, RED));
+    game.spikes.push(new spike((player1.w*9), height - (player1.w*6), 3, 3, RED));
+    game.spikes.push(new spike((player1.w*14), height - (player1.w*6), 3, 3, RED));
+    game.spikes.push(new spike(width - (player1.w*6), height - (player1.w*5.5), 3, 4, RED));
+    game.spikes.push(new spike((player1.w*8), (player1.w*9.5), 2, 3, RED));
+    game.spikes.push(new spike((player1.w*12), (player1.w*9.5), 2, 3, RED));
     game.spikes.push(new spike(520, 375, 2, 3, RED));
     game.spikes.push(new spike(660, 375, 2, 3, RED));
     game.spikes.push(new spike(800, 375, 2, 3, RED));
