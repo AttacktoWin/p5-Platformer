@@ -51,18 +51,13 @@ function keyPressed() {
 
 function touchStarted() {
     for(var i = 0; i < touches.length; i++) {
-        if (dist(touches[i].x, touches[i].y, jumpButton.x, jumpButton.y) < jumpButton.r) {
+        if (touches[i].x > width/2) {
             jumpPlayer1();
         }
     }
     return false;
 }
 
-function touchEnded() {
-    for(var i = 0; i < touches.length; i++) {
-        if(dist(touches[i].x, touches[i].y, jumpButton.x, jumpButton.y) > jumpButton.r) {
-            player1.jump = false;
-        }
-    }
+function touchMoved() {
     return false;
 }

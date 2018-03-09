@@ -177,8 +177,8 @@ class key {
     }
 
     logic() {
-        if (player1.x + player1.w > this.x && player1.x < this.x + 15) {
-            if (player1.y + player1.h > this.y && player1.y < this.y + 15) {
+        if (player1.x + player1.w > this.x && player1.x < this.x + (player1.w*0.5)) {
+            if (player1.y + player1.h > this.y && player1.y < this.y + (player1.w*0.5)) {
                 game.keys.splice(this.index, 1);
             }
         }
@@ -194,7 +194,7 @@ class key {
     show() {
         fill(this.col);
         noStroke();
-        rect(this.x, this.y, 15, 15);
+        rect(this.x, this.y, (player1.w*0.5), (player1.w*0.5));
         fill(this.doorCol);
         rect(this.doorX, this.doorY, this.w, this.h);
     }
