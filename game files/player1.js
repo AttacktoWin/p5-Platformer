@@ -230,10 +230,8 @@ function drawPlayer1() {
 function jumpPlayer1() {
     // Jump on UP_ARROW
     if (!player1.jump) {
-        if (keyCode == UP_ARROW || keyCode == 87 || keyCode == 32) {
             player1.ySpeed = -(player1.w*1.25);
             player1.jump = true;
-        }
     }
 }
 
