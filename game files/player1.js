@@ -121,8 +121,8 @@ function initPlayer1() {
     dPad = {
         x: (width/100*10),
         y: height - (height/100*10),
-        w: (player1.w*3),
-        h: (player1.w*2)
+        w: (player1.w*5),
+        h: (player1.w*3)
     }
 }
 
