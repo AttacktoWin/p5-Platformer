@@ -142,8 +142,6 @@ function movePlayer1() {
     }
 
     player1.x += player1.xSpeed;
-    player1.left = false;
-    player1.right = false;
     player1.xSpeed = 0;
     // Move Vertically - Gravity
     if (player1.ySpeed > player1.w) {
