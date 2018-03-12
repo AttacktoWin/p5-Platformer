@@ -103,7 +103,7 @@ function initPlayer1() {
             rect(dPad.x, dPad.y, dPad.w, dPad.h);
             rect(dPad.x + dPad.w + 5, dPad.y, dPad.w, dPad.h);
             stroke(255, 255, 255, 75);
-            strokeWeight(5);
+            strokeWeight((player1.w*0.5));
             line(dPad.x + (player1.w/2), dPad.y + (dPad.h/2), dPad.x + dPad.w - (player1.w/2), dPad.y + (dPad.h/2));
             line(dPad.x + (player1.w/2), dPad.y + (dPad.h/2), dPad.x + (dPad.w/3), dPad.y + (player1.w/2));
             line(dPad.x + (player1.w/2), dPad.y + (dPad.h/2), dPad.x + (dPad.w/3), dPad.y + (dPad.h - (player1.w/2)));

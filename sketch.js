@@ -73,3 +73,13 @@ function touchStarted() {
 function touchMoved() {
     return false;
 }
+
+function touchEnded() {
+    if (player1.left) {
+        player1.left = false;
+    }
+    if (player1.right) {
+        player1.right = false;
+    }
+    return false;
+}
