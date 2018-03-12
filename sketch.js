@@ -75,11 +75,26 @@ function touchMoved() {
 }
 
 function touchEnded() {
-    if (player1.left) {
-        player1.left = false;
+    for (var i = 0; i < touches.length; i++) {
+        if (touches[i].x > dPad.x && touches[i].x < dPad.x + dPad.w) {
+            if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
+                player1.left = true;
+            } else {
+                player1.left = false;
+            }
+        } else {
+            player1.left = false;
+        }
+        if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2*dPad.w) {
+            if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
+                player1.right = true;
+            } else {
+                player1.right = false;
+            }
+        } else {
+            player1.right = false;
+        }
     }
-    if (player1.right) {
-        player1.right = false;
-    }
+
     return false;
 }
