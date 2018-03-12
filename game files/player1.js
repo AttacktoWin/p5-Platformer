@@ -12,6 +12,8 @@ function initPlayer1() {
         homeX: 0,
         homeY: 0,
         jump: false,
+        left: false,
+        right: false,
         deaths: 0
     };
     game = {
@@ -89,15 +91,38 @@ function initPlayer1() {
             textAlign(CENTER);
             textSize((player1.w*1.5));
             text(game.minutes + ":" + game.seconds + "." + game.timer, width / 2, (player1.w*1.5));
-            
+            //Jump Button Rendering
             fill(0, 20, 255, 50);
             ellipse(jumpButton.x, jumpButton.y, jumpButton.r);
+            fill(255);
+            textSize((player1.w));
+            textAlign(CENTER);
+            text("JUMP", jumpButton.x, jumpButton.y + (player1.w*0.5));
+            // D-Pad Rendering
+            fill(25, 25, 25, 60);
+            rect(dPad.x, dPad.y, dPad.w, dPad.h);
+            rect(dPad.x + dPad.w + 5, dPad.y, dPad.w, dPad.h);
+            stroke(255, 255, 255, 75);
+            strokeWeight(5);
+            line(dPad.x + 15, dPad.y + (dPad.h/2), dPad.x + dPad.w - 15, dPad.y + (dPad.h/2));
+            line(dPad.x + 15, dPad.y + (dPad.h/2), dPad.x + (dPad.w/3), dPad.y + 15);
+            line(dPad.x + 15, dPad.y + (dPad.h/2), dPad.x + (dPad.w/3), dPad.y + (dPad.h - 15));
+            
+            line(dPad.x + dPad.w + 20, dPad.y + (dPad.h/2), dPad.x + dPad.w*2 - 15, dPad.y + (dPad.h/2));
+            line(dPad.x + dPad.w*2 - 15, dPad.y + (dPad.h/2), dPad.x + dPad.w + 2*(dPad.w/3), dPad.y + 15);
+            line(dPad.x + dPad.w*2 - 15, dPad.y + (dPad.h/2), dPad.x + dPad.w + 2*(dPad.w/3), dPad.y + (dPad.h - 15));
         }
     };
     jumpButton = {
         x: width - (width/100*10),
         y: height - (height/100*10),
         r: player1.w*4
+    };
+    dPad = {
+        x: (width/100*10),
+        y: height - (height/100*10),
+        w: (player1.w*3),
+        h: (player1.w*2)
     }
 }
 
@@ -110,13 +135,15 @@ function respawn() {
 
 function movePlayer1() {
     // Move Horizontally on Key is Down
-    if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+    if (keyIsDown(LEFT_ARROW) || keyIsDown(65) || player1.left) {
         player1.xSpeed = -(player1.w/2);
-    } else if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+    } else if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) || player1.right) {
         player1.xSpeed = (player1.w/2);
     }
 
     player1.x += player1.xSpeed;
+    player1.left = false;
+    player1.right = false;
     player1.xSpeed = 0;
     // Move Vertically - Gravity
     if (player1.ySpeed > player1.w) {

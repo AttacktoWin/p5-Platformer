@@ -54,6 +54,16 @@ function touchStarted() {
         if (touches[i].x > width/2) {
             jumpPlayer1();
         }
+        if (touches[i].x > dPad.x && touches[i].x < dPad.x + dPad.w) {
+            if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
+                player1.left = true;
+            }
+        }
+        if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2*dPad.w) {
+            if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
+                player.right = true;
+            }
+        }
     }
     return false;
 }
