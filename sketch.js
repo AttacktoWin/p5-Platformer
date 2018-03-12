@@ -30,7 +30,7 @@ function draw() {
     // DRAW
     background(GREEN);
     drawPlayer1();
-    if (game.level != "start") {
+    if (game.level != "start" && !game.pause) {
         game.logic();
     }
     game.show();
@@ -52,18 +52,20 @@ function keyPressed() {
 
 
 function touchStarted() {
-    for (var i = 0; i < touches.length; i++) {
-        if (touches[i].x > width / 2) {
-            jumpPlayer1();
-        }
-        if (touches[i].x > dPad.x && touches[i].x < dPad.x + dPad.w) {
-            if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
-                player1.left = true;
+    if (!game.pause) {
+        for (var i = 0; i < touches.length; i++) {
+            if (touches[i].x > width / 2) {
+                jumpPlayer1();
             }
-        }
-        if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2 * dPad.w) {
-            if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
-                player1.right = true;
+            if (touches[i].x > dPad.x && touches[i].x < dPad.x + dPad.w) {
+                if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
+                    player1.left = true;
+                }
+            }
+            if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2 * dPad.w) {
+                if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
+                    player1.right = true;
+                }
             }
         }
     }
@@ -73,18 +75,20 @@ function touchStarted() {
 function touchMoved() {
     player1.left = false;
     player1.right = false;
-    for (var i = 0; i < touches.length; i++) {
-        if (touches[i].x > width / 2) {
-            jumpPlayer1();
-        }
-        if (touches[i].x > dPad.x && touches[i].x < dPad.x + dPad.w) {
-            if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
-                player1.left = true;
+    if (!game.pause) {
+        for (var i = 0; i < touches.length; i++) {
+            if (touches[i].x > width / 2) {
+                jumpPlayer1();
             }
-        }
-        if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2 * dPad.w) {
-            if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
-                player1.right = true;
+            if (touches[i].x > dPad.x && touches[i].x < dPad.x + dPad.w) {
+                if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
+                    player1.left = true;
+                }
+            }
+            if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2 * dPad.w) {
+                if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
+                    player1.right = true;
+                }
             }
         }
     }
