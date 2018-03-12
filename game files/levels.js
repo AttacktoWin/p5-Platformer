@@ -33,6 +33,9 @@ function levelUp() {
 }
 
 function levelDown() {
+    if (game.level == "start") {
+        title();
+    }
     if (game.level == 1) {
         level1();
     } else if (game.level == 2) {
