@@ -52,8 +52,8 @@ function keyPressed() {
 
 
 function touchStarted() {
-    for(var i = 0; i < touches.length; i++) {
-        if (touches[i].x > width/2) {
+    for (var i = 0; i < touches.length; i++) {
+        if (touches[i].x > width / 2) {
             jumpPlayer1();
         }
         if (touches[i].x > dPad.x && touches[i].x < dPad.x + dPad.w) {
@@ -61,7 +61,7 @@ function touchStarted() {
                 player1.left = true;
             }
         }
-        if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2*dPad.w) {
+        if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2 * dPad.w) {
             if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
                 player1.right = true;
             }
@@ -75,26 +75,30 @@ function touchMoved() {
 }
 
 function touchEnded() {
-    for (var i = 0; i < touches.length; i++) {
-        if (touches[i].x > dPad.x && touches[i].x < dPad.x + dPad.w) {
-            if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
-                player1.left = true;
+    if (touches.length === 0) {
+        player1.left = false;
+        player1.right = false;
+    } else {
+        for (var i = 0; i < touches.length; i++) {
+            if (touches[i].x > dPad.x && touches[i].x < dPad.x + dPad.w) {
+                if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
+                    player1.left = true;
+                } else {
+                    player1.left = false;
+                }
             } else {
                 player1.left = false;
             }
-        } else {
-            player1.left = false;
-        }
-        if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2*dPad.w) {
-            if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
-                player1.right = true;
+            if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2 * dPad.w) {
+                if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
+                    player1.right = true;
+                } else {
+                    player1.right = false;
+                }
             } else {
                 player1.right = false;
             }
-        } else {
-            player1.right = false;
         }
     }
-
     return false;
 }
