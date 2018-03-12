@@ -255,7 +255,7 @@ function drawPlayer1() {
 function jumpPlayer1() {
     // Jump on UP_ARROW
     if (!player1.jump) {
-            player1.ySpeed = -(player1.w*1.25);
+            player1.ySpeed = -(player1.w*1.2);
             player1.jump = true;
     }
 }

@@ -71,6 +71,8 @@ function touchStarted() {
 }
 
 function touchMoved() {
+    player1.left = false;
+    player1.right = false;
     for (var i = 0; i < touches.length; i++) {
         if (touches[i].x > width / 2) {
             jumpPlayer1();
