@@ -39,7 +39,9 @@ function draw() {
 
 // EVENT FUNCTIONS
 function keyPressed() {
-    jumpPlayer1();
+    if (keyCode === 32 || keyCode === 87 || keyCode === UP_ARROW) {
+        jumpPlayer1();
+    }
     if (keyCode === 82) {
         respawn();
     }
@@ -61,7 +63,7 @@ function touchStarted() {
         }
         if (touches[i].x > dPad.x + dPad.w + 5 && touches[i].x < dPad.x + 2*dPad.w) {
             if (touches[i].y > dPad.y && touches[i].y < dPad.y + dPad.h) {
-                player.right = true;
+                player1.right = true;
             }
         }
     }

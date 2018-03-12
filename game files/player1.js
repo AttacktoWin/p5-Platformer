@@ -104,13 +104,13 @@ function initPlayer1() {
             rect(dPad.x + dPad.w + 5, dPad.y, dPad.w, dPad.h);
             stroke(255, 255, 255, 75);
             strokeWeight(5);
-            line(dPad.x + 15, dPad.y + (dPad.h/2), dPad.x + dPad.w - 15, dPad.y + (dPad.h/2));
-            line(dPad.x + 15, dPad.y + (dPad.h/2), dPad.x + (dPad.w/3), dPad.y + 15);
-            line(dPad.x + 15, dPad.y + (dPad.h/2), dPad.x + (dPad.w/3), dPad.y + (dPad.h - 15));
+            line(dPad.x + (player1.w/2), dPad.y + (dPad.h/2), dPad.x + dPad.w - (player1.w/2), dPad.y + (dPad.h/2));
+            line(dPad.x + (player1.w/2), dPad.y + (dPad.h/2), dPad.x + (dPad.w/3), dPad.y + (player1.w/2));
+            line(dPad.x + (player1.w/2), dPad.y + (dPad.h/2), dPad.x + (dPad.w/3), dPad.y + (dPad.h - (player1.w/2)));
             
-            line(dPad.x + dPad.w + 20, dPad.y + (dPad.h/2), dPad.x + dPad.w*2 - 15, dPad.y + (dPad.h/2));
-            line(dPad.x + dPad.w*2 - 15, dPad.y + (dPad.h/2), dPad.x + dPad.w + 2*(dPad.w/3), dPad.y + 15);
-            line(dPad.x + dPad.w*2 - 15, dPad.y + (dPad.h/2), dPad.x + dPad.w + 2*(dPad.w/3), dPad.y + (dPad.h - 15));
+            line(dPad.x + dPad.w + (player1.w/1.5), dPad.y + (dPad.h/2), dPad.x + dPad.w*2 - (player1.w/2), dPad.y + (dPad.h/2));
+            line(dPad.x + dPad.w*2 - (player1.w/2), dPad.y + (dPad.h/2), dPad.x + dPad.w + 2*(dPad.w/3), dPad.y + (player1.w/2));
+            line(dPad.x + dPad.w*2 - (player1.w/2), dPad.y + (dPad.h/2), dPad.x + dPad.w + 2*(dPad.w/3), dPad.y + (dPad.h - (player1.w/2)));
         }
     };
     jumpButton = {
