@@ -16,6 +16,7 @@ function initPlayer1() {
     };
     game = {
         level: "start",
+        pause: false,
         platforms: [],
         spikes: [],
         moveables: [],
@@ -85,10 +86,26 @@ function initPlayer1() {
             textAlign(LEFT);
             textSize(30);
             text("Deaths: " + player1.deaths, 15, 30);
-            text("Level " + game.level, width - 150, 30);
+            text("Level " + game.level, width - 225, 30);
             textAlign(CENTER);
             textSize(50);
             text(game.minutes + ":" + game.seconds + "." + game.timer, width / 2, 50);
+            
+            if (game.pause) {
+                fill(20, 20, 20, 150);
+                rect(0, 0, width, height);
+                textAlign(CENTER);
+                textSize(50);
+                text("PAUSED", width / 2, height / 2);
+            }
+            // Pause Button
+            noStroke();
+            fill(40, 40, 40, 150);
+            rect(width - (player1.w * 2), player1.w * 0.5, player1.w * 1.5, player1.w * 1.5);
+            stroke(255, 255, 255, 150);
+            strokeWeight(5);
+            line(width - (player1.w * 1.45), player1.w * 0.75, width - (player1.w * 1.45), player1.w * 1.75);
+            line(width - (player1.w), player1.w * 0.75, width - (player1.w), player1.w * 1.75);
         }
     };
 }

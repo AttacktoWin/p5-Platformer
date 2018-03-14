@@ -25,11 +25,13 @@ function setup() {
 // DRAW FUNCTION - Loops @ 60FPS by default
 function draw() {
     // LOGIC
-    movePlayer1();
+    if (!game.pause) {
+        movePlayer1();
+    }
     // DRAW
     background(GREEN);
     drawPlayer1();
-    if (game.level != "start") {
+    if (game.level != "start" && !game.pause) {
         game.logic();
     }
     game.show();
@@ -38,11 +40,21 @@ function draw() {
 
 // EVENT FUNCTIONS
 function keyPressed() {
-    jumpPlayer1();
-    if (keyCode === 82) {
-        respawn();
+    if (!game.pause) {
+        jumpPlayer1();
+        if (keyCode === 82) {
+            respawn();
+        }
+        if (keyCode === 13) {
+            debugTeleport();
+        }
     }
-    if (keyCode === 13) {
-        debugTeleport();
+}
+
+function mousePressed() {
+    if (mouseX > width - (player1.w * 2) && mouseX < (width - (player1.w * 2)) + (player1.w * 1.5)) {
+        if (mouseY > player1.w * 0.5 && mouseY < player1.w * 2) {
+            game.pause = !game.pause;
+        }
     }
 }
