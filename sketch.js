@@ -25,13 +25,15 @@ function setup() {
 // DRAW FUNCTION - Loops @ 60FPS by default
 function draw() {
     // LOGIC
-    if (!game.pause) {
+    if (!game.pause && game.level != "complete") {
         movePlayer1();
     }
     // DRAW
     background(GREEN);
-    drawPlayer1();
-    if (game.level != "start" && !game.pause) {
+    if (game.level != "complete") {
+        drawPlayer1();
+    }
+    if (game.level != "start" && !game.pause && game.level != "complete") {
         game.logic();
     }
     game.show();
@@ -55,6 +57,14 @@ function mousePressed() {
     if (mouseX > width - (player1.w * 2) && mouseX < (width - (player1.w * 2)) + (player1.w * 1.5)) {
         if (mouseY > player1.w * 0.5 && mouseY < player1.w * 2) {
             game.pause = !game.pause;
+        }
+    }
+    if (game.level == "complete") {
+        if (mouseX > width/3 && mouseX < width/3 +200) {
+            if (mouseY > (height/3)*2 && mouseY < (height/3)*2 + 75) {
+                var score = localStorage.scores;
+                //score.append()
+            }
         }
     }
 }
