@@ -244,15 +244,15 @@ function level7() {
     game.triggers.push(new trigger(0, 0, 2, height, function () {
         game.triggers.splice(1, game.triggers.length - 1);
         game.triggers.push(new trigger((player1.w*4) - 5, (player1.w*2), (player1.w*3), (player1.w*6), function () {
-            game.moveables.push(new moveable(0, (player1.w*0.1), 0, (player1.w*4), "spikes", 0, true));
+            game.moveables.push(new moveable(0, (player1.w*0.2), 0, (player1.w*4), "spikes", 0, true));
             game.triggers.splice(1, 1);
         }));
         game.triggers.push(new trigger((player1.w*9) - 5, (player1.w*2), (player1.w*3), (player1.w*6), function () {
-            game.moveables.push(new moveable(0, (player1.w*0.1), 0, (player1.w*4), "spikes", 1, true));
+            game.moveables.push(new moveable(0, (player1.w*0.2), 0, (player1.w*4), "spikes", 1, true));
             game.triggers.splice(1, 1);
         }));
         game.triggers.push(new trigger(0, (player1.w*7.5), width, (player1.w*6), function () {
-            game.moveables.push(new moveable(-(player1.w*0.5), 0, (-width) + (player1.w*2), 0, "spikes", 2, true));
+            game.moveables.push(new moveable(-(player1.w*0.3), 0, (-width) + (player1.w*2), 0, "spikes", 2, true));
             game.triggers.splice(1, 1);
         }))
     }));

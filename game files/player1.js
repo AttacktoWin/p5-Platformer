@@ -7,7 +7,7 @@ function initPlayer1() {
         h: (width / 100 * 2),
         xSpeed: 0,
         ySpeed: 0,
-        a: (width / 100 * 0.1),
+        a: (width / 100 * 0.2),
         col: BLUE,
         homeX: 0,
         homeY: 0,
@@ -126,7 +126,7 @@ function initPlayer1() {
         r: player1.w * 4
     };
     dPad = {
-        x: (width / 100 * 10),
+        x: (width / 100 * 5),
         y: height - (height / 100 * 10),
         w: (player1.w * 5),
         h: (player1.w * 3)
@@ -262,7 +262,7 @@ function drawPlayer1() {
 function jumpPlayer1() {
     // Jump on UP_ARROW
     if (!player1.jump) {
-        player1.ySpeed = -(player1.w * 1.2);
+        player1.ySpeed = -(player1.w * 1.1);
         player1.jump = true;
     }
 }
