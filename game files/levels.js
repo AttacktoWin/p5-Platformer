@@ -243,7 +243,9 @@ function level7() {
     game.moveables.push(new moveable((player1.w*0.25), 0, (player1.w*12), 0, "platforms", 7));
     game.triggers.push(new trigger(0, 0, 2, height, function () {
         game.triggers.splice(1, game.triggers.length - 1);
-        game.movabeles.splice(2, moveables.length-2);
+        game.moveables.splice(2, game.moveables.length-2);
+        game.spikes[0].y = (player1.w);
+        game.spikes[1].y = (player1.w);
         game.spikes[2].x = width - (player1.w*2);
         game.spikes[2].y = (player1.w*8);
         game.triggers.push(new trigger((player1.w*4) - 5, (player1.w*2), (player1.w*3), (player1.w*6), function () {

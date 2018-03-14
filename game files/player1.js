@@ -111,13 +111,22 @@ function initPlayer1() {
             line(dPad.x + dPad.w + (player1.w / 1.5), dPad.y + (dPad.h / 2), dPad.x + dPad.w * 2 - (player1.w / 2), dPad.y + (dPad.h / 2));
             line(dPad.x + dPad.w * 2 - (player1.w / 2), dPad.y + (dPad.h / 2), dPad.x + dPad.w + 2 * (dPad.w / 3), dPad.y + (player1.w / 2));
             line(dPad.x + dPad.w * 2 - (player1.w / 2), dPad.y + (dPad.h / 2), dPad.x + dPad.w + 2 * (dPad.w / 3), dPad.y + (dPad.h - (player1.w / 2)));
-            
+            // Pause Button
             noStroke();
             fill(40, 40, 40, 150);
             rect(width- (player1.w * 2), player1.w*0.5 , player1.w *1.25, player1.w *1.25);
             stroke(255, 255, 255, 150);
             strokeWeight(5);
+            line(width- (player1.w*1.6), player1.w*0.75, width - (player1.w*1.6), player1.w * 1.4);
+            line(width - (player1.w*1.2), player1.w*0.75, width - (player1.w*1.2), player1.w * 1.4);
             
+            if (game.pause) {
+                fill(20, 20, 20, 150);
+                rect(0, 0, width, height);
+                textAlign(CENTER);
+                textSize(50);
+                text("PAUSED", width/2, height/2);
+            }
         }
     };
     jumpButton = {
