@@ -72,8 +72,8 @@ function touchStarted() {
         }
     }
     for (var i = 0; i < touches.length; i++) {
-        if (touches[i].x > width - (player1.w * 2) && touches[i].x < (width- (player1.w * 2)) + (player1.w *1.25)) {
-            if (touches[i].y > player1.w*0.5 && touches[i].y > (player1.w*0.5) + (player1.w*1.25)) {
+        if (touches[i].x > width - (player1.w * 2) && touches[i].x < (width- (player1.w * 2)) + (player1.w *1.5)) {
+            if (touches[i].y > player1.w*0.5 && touches[i].y > (player1.w*0.5) + (player1.w*1.5)) {
                 game.pause = !game.pause;
             }
         }
