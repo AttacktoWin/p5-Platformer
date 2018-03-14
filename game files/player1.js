@@ -7,7 +7,7 @@ function initPlayer1() {
         h: (width / 100 * 2),
         xSpeed: 0,
         ySpeed: 0,
-        a: (width / 100 * 0.12),
+        a: (width / 100 * 0.115),
         col: BLUE,
         homeX: 0,
         homeY: 0,
@@ -151,9 +151,9 @@ function respawn() {
 function movePlayer1() {
     // Move Horizontally on Key is Down
     if (keyIsDown(LEFT_ARROW) || keyIsDown(65) || player1.left) {
-        player1.xSpeed = -(player1.w / 2);
+        player1.xSpeed = -(player1.w*0.4);
     } else if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) || player1.right) {
-        player1.xSpeed = (player1.w / 2);
+        player1.xSpeed = (player1.w*0.4);
     }
 
     player1.x += player1.xSpeed;
