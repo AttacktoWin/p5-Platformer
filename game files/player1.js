@@ -7,7 +7,7 @@ function initPlayer1() {
         h: (width / 100 * 2),
         xSpeed: 0,
         ySpeed: 0,
-        a: (width / 100 * 0.2),
+        a: (width / 100 * 0.12),
         col: BLUE,
         homeX: 0,
         homeY: 0,
