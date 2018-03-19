@@ -66,14 +66,14 @@ function mousePressed() {
     if (game.level == "complete") {
         if (mouseX > width/3 && mouseX < width/3 +200) {
             if (mouseY > (height/3)*2 && mouseY < (height/3)*2 + 75) {
-                if (typeof localStorage.scores != "string") {
-                    localStorage.setItem("scores", "-1");
+                if (typeof localStorage.GLscores != "string") {
+                    localStorage.setItem("GLscores", "-1");
                 }
-                var scoreNum = parseInt(localStorage.scores) + 1;
-                localStorage.scores = "" + scoreNum;
-                localStorage.setItem("score" + scoreNum, "" + game.minutes + ":" + game.seconds + "." + game.timer);
+                var scoreNum = parseInt(localStorage.GLscores) + 1;
+                localStorage.GLscores = "" + scoreNum;
+                localStorage.setItem("GLscore" + scoreNum, "" + game.minutes + ":" + game.seconds + "." + game.timer);
                 for (var i = 0; i < scoreNum; i++) {
-                    game.scores.push(localStorage.getItem("score" + i));
+                    game.scores.push(localStorage.getItem("GLscore" + i));
                 }
                 game.scores.sort();
                 game.level = "displayScores";
