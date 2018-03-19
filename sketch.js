@@ -25,18 +25,22 @@ function setup() {
 // DRAW FUNCTION - Loops @ 60FPS by default
 function draw() {
     // LOGIC
-    if (!game.pause && game.level != "complete") {
+    if (!game.pause && game.level != "complete" && game.level != "displayScores") {
         movePlayer1();
     }
     // DRAW
     background(GREEN);
-    if (game.level != "complete") {
+    if (game.level != "complete" && game.level != "displayScores") {
         drawPlayer1();
     }
-    if (game.level != "start" && !game.pause && game.level != "complete") {
+    if (game.level != "start" && !game.pause && game.level != "complete" && game.level != "displayScores") {
         game.logic();
     }
-    game.show();
+    if (game.level != "displayScores") {
+        game.show();
+    } else {
+        game.displayScores();
+    }
 
 }
 
@@ -62,8 +66,17 @@ function mousePressed() {
     if (game.level == "complete") {
         if (mouseX > width/3 && mouseX < width/3 +200) {
             if (mouseY > (height/3)*2 && mouseY < (height/3)*2 + 75) {
-                var score = localStorage.scores;
-                //score.append()
+                if (typeof localStorage.scores != "string") {
+                    localStorage.setItem("scores", "-1");
+                }
+                var scoreNum = parseInt(localStorage.scores) + 1;
+                localStorage.scores = "" + scoreNum;
+                localStorage.setItem("score" + scoreNum, "" + game.minutes + ":" + game.seconds + "." + game.timer);
+                for (var i = 0; i < scoreNum; i++) {
+                    game.scores.push(localStorage.getItem("score" + i));
+                }
+                game.scores.sort();
+                game.level = "displayScores";
             }
         }
     }
