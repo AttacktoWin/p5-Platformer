@@ -2,11 +2,11 @@
 
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "https://attackto.win"
-    id          = "com.shashank.goodluck"
+    id          = "com.shashank.goodluckdebug"
     versionCode = "10"
-    version     = "1.1.0" >
+    version     = "1.0.0" >
 
-    <name>Good Luck</name>
+    <name>Good Luck Debug</name>
     <description>
         Good Luck mobile edition
     </description>
