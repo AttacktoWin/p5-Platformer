@@ -337,18 +337,18 @@ function level8() {
 function end() {
     game.clearLevel();
     textAlign(CENTER);
-    textSize(50);
+    textSize((player1.w*4));
     game.specials.push({show: function() {
         text("CONGRATULATIONS!", width/2, height/2);
         text("Save score?", width/2, height/2 + 100);
         fill(BLUE);
         noStroke();
-        rect(width/3, (height/3)*2, 200, 75);
-        textSize(40);
+        rect(width/3, (height/3)*2, (player1.w*5), (player1.w*3));
+        textSize((player1.w*2));
         fill(255);
         text("YES", width/3 + 100, (height/3)*2 + 50);
         fill(RED);
-        rect((width/3) * 1.75, (height/3)*2, 200, 75);
+        rect((width/3) * 1.75, (height/3)*2, (player1.w*5), (player1.w*3));
         fill(255);
         text("NO", (width/3) * 1.75 + 100, (height/3)*2 + 50);
     }});

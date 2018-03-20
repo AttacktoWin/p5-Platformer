@@ -135,17 +135,17 @@ function initPlayer1() {
             noStroke();
             text("High Scores:", width/2, 100);
             var i = 0;
-            var y = 200;
+            var y = (player1.w*2);
             while(i < game.scores.length || i < 15) {
                 textAlign(LEFT);
-                text("" + (i+1) + ".", 700, y);
+                text("" + (i+1) + ".", (player1.w*8), y);
                 if (typeof game.scores[i] == "string") {
                     text(game.scores[i], width/2, y);
                 } else {
                     text("00:00.00", width/2, y);
                 }
                 i++;
-                y += 50;
+                y += (player1.w*2);
             }
         }
     };

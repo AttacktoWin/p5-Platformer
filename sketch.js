@@ -87,8 +87,8 @@ function touchStarted() {
     }
     if (game.level == "complete") {
         for (var i = 0; i < touches.length; i++) {
-            if (touches[i].x > width / 3 && touches[i].x < width / 3 + 200) {
-                if (touches[i].y > (height / 3) * 2 && touches[i].y < (height / 3) * 2 + 75) {
+            if (touches[i].x > width / 3 && touches[i].x < width / 3 + (player1.w*5)) {
+                if (touches[i].y > (height / 3) * 2 && touches[i].y < (height / 3) * 2 + (player1.w*3)) {
                     if (typeof localStorage.GLscores != "string") {
                         localStorage.setItem("GLscores", "-1");
                     }
