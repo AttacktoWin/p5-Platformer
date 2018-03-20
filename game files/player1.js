@@ -129,7 +129,7 @@ function initPlayer1() {
             line(width - (player1.w), player1.w * 0.75, width - (player1.w), player1.w * 1.75);
         },
         displayScores: function () {
-            textSize(40);
+            textSize((player1.w));
             textAlign(CENTER);
             fill(255);
             noStroke();

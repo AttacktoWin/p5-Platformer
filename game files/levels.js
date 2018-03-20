@@ -337,14 +337,14 @@ function level8() {
 function end() {
     game.clearLevel();
     textAlign(CENTER);
-    textSize((player1.w*4));
+    textSize((player1.w*2));
     game.specials.push({show: function() {
         text("CONGRATULATIONS!", width/2, height/2);
         text("Save score?", width/2, height/2 + 100);
         fill(BLUE);
         noStroke();
         rect(width/3, (height/3)*2, (player1.w*5), (player1.w*3));
-        textSize((player1.w*2));
+        textSize((player1.w));
         fill(255);
         text("YES", width/3 + 100, (height/3)*2 + 50);
         fill(RED);
