@@ -31,11 +31,18 @@ function draw() {
     }
     // DRAW
     background(GREEN);
-    drawPlayer1();
-    if (game.level != "start" && !game.pause) {
+
+    if (game.level != "complete" && game.level != "displayScores") {
+        drawPlayer1();
+    }
+    if (game.level != "start" && !game.pause && game.level != "complete" && game.level != "displayScores") {
         game.logic();
     }
-    game.show();
+    if (game.level != "displayScores") {
+        game.show();
+    } else {
+        game.displayScores();
+    }
 
 }
 
@@ -72,9 +79,28 @@ function touchStarted() {
         }
     }
     for (var i = 0; i < touches.length; i++) {
-        if (touches[i].x > width - (player1.w * 2) && touches[i].x < (width- (player1.w * 2)) + (player1.w *1.5)) {
-            if (touches[i].y > player1.w*0.5 && touches[i].y > (player1.w*0.5) + (player1.w*1.5)) {
+        if (touches[i].x > width - (player1.w * 2) && touches[i].x < (width - (player1.w * 2)) + (player1.w * 1.5)) {
+            if (touches[i].y > player1.w * 0.5 && touches[i].y > (player1.w * 0.5) + (player1.w * 1.5)) {
                 game.pause = !game.pause;
+            }
+        }
+    }
+    if (game.level == "complete") {
+        for (var i = 0; i < touches.length; i++) {
+            if (touches[i].x > width / 3 && touches[i].x < width / 3 + 200) {
+                if (touches[i].y > (height / 3) * 2 && touches[i].y < (height / 3) * 2 + 75) {
+                    if (typeof localStorage.GLscores != "string") {
+                        localStorage.setItem("GLscores", "-1");
+                    }
+                    var scoreNum = parseInt(localStorage.GLscores) + 1;
+                    localStorage.GLscores = "" + scoreNum;
+                    localStorage.setItem("GLscore" + scoreNum, "" + game.minutes + ":" + game.seconds + "." + game.timer);
+                    for (var i = 0; i < scoreNum + 1; i++) {
+                        game.scores.push(localStorage.getItem("GLscore" + i));
+                    }
+                    game.scores.sort();
+                    game.level = "displayScores";
+                }
             }
         }
     }

@@ -25,6 +25,7 @@ function initPlayer1() {
         specials: [],
         keys: [],
         triggers: [],
+        scores: [],
         timer: 0,
         seconds: 0,
         minutes: 0,
@@ -126,6 +127,26 @@ function initPlayer1() {
             strokeWeight(5);
             line(width - (player1.w * 1.45), player1.w * 0.75, width - (player1.w * 1.45), player1.w * 1.75);
             line(width - (player1.w), player1.w * 0.75, width - (player1.w), player1.w * 1.75);
+        },
+        displayScores: function () {
+            textSize(40);
+            textAlign(CENTER);
+            fill(255);
+            noStroke();
+            text("High Scores:", width/2, 100);
+            var i = 0;
+            var y = 200;
+            while(i < game.scores.length || i < 15) {
+                textAlign(LEFT);
+                text("" + (i+1) + ".", 700, y);
+                if (typeof game.scores[i] == "string") {
+                    text(game.scores[i], width/2, y);
+                } else {
+                    text("00:00.00", width/2, y);
+                }
+                i++;
+                y += 50;
+            }
         }
     };
     jumpButton = {
