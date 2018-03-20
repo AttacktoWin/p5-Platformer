@@ -4,7 +4,7 @@
     xmlns:gap   = "https://attackto.win"
     id          = "com.shashank.goodluck"
     versionCode = "10"
-    version     = "1.0.0" >
+    version     = "1.1.0" >
 
     <name>Good Luck</name>
     <description>
