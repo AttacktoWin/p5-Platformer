@@ -158,3 +158,7 @@ function touchEnded() {
     }
     return false;
 }
+
+function deviceShaken() {
+    levelUp();
+}
