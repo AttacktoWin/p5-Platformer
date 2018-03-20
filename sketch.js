@@ -72,9 +72,14 @@ function mousePressed() {
                 var scoreNum = parseInt(localStorage.GLscores) + 1;
                 localStorage.GLscores = "" + scoreNum;
                 localStorage.setItem("GLscore" + scoreNum, "" + game.minutes + ":" + game.seconds + "." + game.timer);
-                for (var i = 0; i < scoreNum; i++) {
+                for (var i = 0; i < scoreNum + 1; i++) {
                     game.scores.push(localStorage.getItem("GLscore" + i));
                 }
+                game.scores.sort();
+                game.level = "displayScores";
+            }
+        } else if (mouseX > (width/3) * 1.75 && mouseX < (width/3) * 1.75 + 200) {
+            if (mouseY > (height/3)*2 && mouseY < (height/3)*2 + 75) {
                 game.scores.sort();
                 game.level = "displayScores";
             }
