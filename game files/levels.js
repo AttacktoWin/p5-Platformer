@@ -24,6 +24,9 @@ function levelUp() {
         level8();
         game.level = 8;
     } else if (game.level == 8) {
+        level9();
+        game.level = 9;
+    } else if (game.level == 9) {
         end();
         game.level = "complete";
     } else if (game.level == "test") {
@@ -59,6 +62,9 @@ function levelDown() {
     } else if (game.level == 8) {
         level7();
         game.level = 7;
+    } else if (game.level == 9) {
+        level8();
+        game.level = 8;
     } else if (game.level == "test") {
         levelTest()
         game.level = "test";
@@ -273,6 +279,39 @@ function level8() {
     game.clearLevel();
     game.platforms.push(new platform(0, height - 50, width, height, GREY, ORANGE));
     game.platforms.push(new platform(0, 0, 50, height - 200, GREY, ORANGE));
+    game.platforms.push(new platform(width-50, 0, 50, height - 200, GREY, ORANGE));
+    game.platforms.push(new platform(50, height - 425, 150, 50, GREY, ORANGE));
+    game.platforms.push(new platform(50, height - 625, 150, 50, GREY, ORANGE));
+    game.platforms.push(new platform(50, height - 825, 150, 50, GREY, ORANGE));
+    game.platforms.push(new platform(250, height - 200, 125, 25, GREY, BLUE));
+    game.spikes.push(new spike(250, height-50, 36, 1, RED));
+    game.spikes.push(new spike(50, height - 550, 3, 2, RED));
+    game.spikes.push(new spike(50, height - 750, 3, 2, RED));
+    game.spikes.push(new spike(50, height - 950, 3, 2, RED));
+    game.keys.push(new key(150, height - 850, width - 50, height - 200, 25, 150, 0, ORANGE, BROWN));
+    game.moveables.push(new moveable(3, 0, 1300, 0, "platforms", 6));
+    game.triggers.push(new trigger(0, 0, 2, height, function() {
+        game.triggers.splice(1, game.triggers.length - 1);
+        game.triggers.push(new trigger(50, height - 550, 150, 125, function() {
+            game.moveables.push(new moveable(1, 0, 150, 0, "spikes", 1, true));
+            game.triggers.splice(1, 1);
+        }));
+    }));
+}
+
+
+function level9() {
+    if (player1.x > width) {
+        player1.homeX = 1;
+        player1.homeY = height - 50 - player1.h;
+    } else if (player1.x < 0) {
+        player1.homeX = width - 2 - player1.w;
+        player1.homeY = height - 50 - player1.h;
+    }
+    respawn();
+    game.clearLevel();
+    game.platforms.push(new platform(0, height - 50, width, height, GREY, ORANGE));
+    game.platforms.push(new platform(0, 0, 50, height - 200, GREY, ORANGE));
     game.platforms.push(new platform(50, height - 250, width - 350, 50, GREY, ORANGE));
     game.platforms.push(new platform(width - 150, 150, 50, height, GREY, ORANGE));
     game.platforms.push(new platform(200, height / 2 + 25, width - 350, 50, GREY, ORANGE));
@@ -331,7 +370,7 @@ function level8() {
             game.moveables.push(new moveable(-4, 0, -100, 0, "spikes", 3, true));
             game.triggers.splice(1, 1);
         }));
-        game.triggers.push(new trigger(1550, height / 2 - 25, 100, 50, function () {
+        game.triggers.push(new trigger(width - 275, height / 2 - 25, 100, 50, function () {
             game.spikes[5].r = 1;
             game.spikes[5].y += 185;
             game.spikes[7].r = 1;
@@ -345,20 +384,22 @@ function end() {
     game.clearLevel();
     textAlign(CENTER);
     textSize(50);
-    game.specials.push({show: function() {
-        text("CONGRATULATIONS!", width/2, height/2);
-        text("Save score?", width/2, height/2 + 100);
-        fill(BLUE);
-        noStroke();
-        rect(width/3, (height/3)*2, 200, 75);
-        textSize(40);
-        fill(255);
-        text("YES", width/3 + 100, (height/3)*2 + 50);
-        fill(RED);
-        rect((width/3) * 1.75, (height/3)*2, 200, 75);
-        fill(255);
-        text("NO", (width/3) * 1.75 + 100, (height/3)*2 + 50);
-    }});
+    game.specials.push({
+        show: function () {
+            text("CONGRATULATIONS!", width / 2, height / 2);
+            text("Save score?", width / 2, height / 2 + 100);
+            fill(BLUE);
+            noStroke();
+            rect(width / 3, (height / 3) * 2, 200, 75);
+            textSize(40);
+            fill(255);
+            text("YES", width / 3 + 100, (height / 3) * 2 + 50);
+            fill(RED);
+            rect((width / 3) * 1.75, (height / 3) * 2, 200, 75);
+            fill(255);
+            text("NO", (width / 3) * 1.75 + 100, (height / 3) * 2 + 50);
+        }
+    });
 }
 
 function levelTest() {
