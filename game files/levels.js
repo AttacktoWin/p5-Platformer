@@ -274,6 +274,7 @@ function level8() {
     } else if (player1.x < 0) {
         player1.homeX = width - 2 - player1.w;
         player1.homeY = height - 50 - player1.h;
+        var noKey = true;
     }
     respawn();
     game.clearLevel();
@@ -290,11 +291,8 @@ function level8() {
     game.spikes.push(new spike(50, height - 950, 3, 2, RED));
     game.keys.push(new key(150, height - 850, width - 50, height - 200, 25, 150, 0, ORANGE, BROWN));
     game.moveables.push(new moveable(3, 0, 1300, 0, "platforms", 6));
-    game.triggers.push(new trigger(width-2, 0, 2, height, function() {
-        game.keys.splice(0, 1);
-    }));
     game.triggers.push(new trigger(0, 0, 2, height, function() {
-        game.triggers.splice(2, game.triggers.length - 1);
+        game.triggers.splice(1, game.triggers.length - 1);
         game.triggers.push(new trigger(50, height - 550, 200, 125, function() {
             game.moveables.push(new moveable(2, 0, 150, 0, "spikes", 1, true));
             game.triggers.splice(1, 1);
@@ -304,6 +302,9 @@ function level8() {
             game.triggers.splice(1, 1);
         }));
     }));
+    if (noKey) {
+        game.keys.splice(0,1);
+    }
 }
 
 
