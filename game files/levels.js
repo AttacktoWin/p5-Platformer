@@ -280,9 +280,9 @@ function level8() {
     game.platforms.push(new platform(0, height - 50, width, height, GREY, ORANGE));
     game.platforms.push(new platform(0, 0, 50, height - 200, GREY, ORANGE));
     game.platforms.push(new platform(width-50, 0, 50, height - 200, GREY, ORANGE));
-    game.platforms.push(new platform(50, height - 425, 150, 50, GREY, ORANGE));
-    game.platforms.push(new platform(50, height - 625, 150, 50, GREY, ORANGE));
-    game.platforms.push(new platform(50, height - 825, 150, 50, GREY, ORANGE));
+    game.platforms.push(new platform(50, height - 425, 200, 50, GREY, ORANGE));
+    game.platforms.push(new platform(50, height - 625, 200, 50, GREY, ORANGE));
+    game.platforms.push(new platform(50, height - 825, 200, 50, GREY, ORANGE));
     game.platforms.push(new platform(250, height - 200, 125, 25, GREY, BLUE));
     game.spikes.push(new spike(250, height-50, 36, 1, RED));
     game.spikes.push(new spike(50, height - 550, 3, 2, RED));
@@ -292,8 +292,12 @@ function level8() {
     game.moveables.push(new moveable(3, 0, 1300, 0, "platforms", 6));
     game.triggers.push(new trigger(0, 0, 2, height, function() {
         game.triggers.splice(1, game.triggers.length - 1);
-        game.triggers.push(new trigger(50, height - 550, 150, 125, function() {
-            game.moveables.push(new moveable(1, 0, 150, 0, "spikes", 1, true));
+        game.triggers.push(new trigger(50, height - 550, 200, 125, function() {
+            game.moveables.push(new moveable(2, 0, 150, 0, "spikes", 1, true));
+            game.triggers.splice(1, 1);
+        }));
+        game.triggers.push(new trigger(50, height - 750, 200, 125, function() {
+            game.moveables.push(new moveable(2, 0, 150, 0, "spikes", 2, true));
             game.triggers.splice(1, 1);
         }));
     }));
