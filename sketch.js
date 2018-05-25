@@ -31,6 +31,7 @@ function mouseClicked() {
     if(game.state == "build") {
         game.level.select();
     }
+    game.changeMode();
 }
 
 function mouseDragged() {

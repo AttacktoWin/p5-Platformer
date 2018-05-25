@@ -58,6 +58,12 @@ function init() {
             for (var i = 0; i < this.level.triggers.length; i++) {
                 this.level.triggers[i].show();
             }
+            fill(40, 40, 40, 150);
+            rect(width - (30 * 4), 30 * 0.5, 30 * 1.5, 30 * 1.5);
+            noFill();
+            stroke(255, 255, 255, 150);
+            strokeWeight(3);
+            triangle(width - (30 * 3.55), 30 * 0.75, width - (30 * 3.55), 30 * 1.75, width - (30 * 2.75), 30 * 1.25);
             noStroke();
             fill(this.level.col);
             rect(this.level.spawnX, this.level.spawnY, 30, 30);
@@ -96,16 +102,30 @@ function init() {
             noStroke();
             fill(40, 40, 40, 150);
             rect(width - (player.w * 2), player.w * 0.5, player.w * 1.5, player.w * 1.5);
+            rect(width - (player.w * 4), player.w * 0.5, player.w * 1.5, player.w * 1.5);
             stroke(255, 255, 255, 150);
             strokeWeight(5);
             line(width - (player.w * 1.45), player.w * 0.75, width - (player.w * 1.45), player.w * 1.75);
             line(width - (player.w), player.w * 0.75, width - (player.w), player.w * 1.75);
+            fill(255, 255, 255, 150);
+            triangle(width - (30 * 3.55), 30 * 0.75, width - (30 * 3.55), 30 * 1.75, width - (30 * 2.75), 30 * 1.25);
 
             player.show();
+        },
+        changeMode() {
+            if (mouseX > width - 120 && mouseX < width - 75) {
+                if (mouseY > 15 && mouseY < 60) {
+                    if (this.state == "build") {
+                        this.play();
+                        this.state = "playing";
+                    } else if (this.state == "playing") {
+                        player = undefined;
+                        this.state = "build";
+                    }
+                }
+            }
         }
     }
-
-    game.level.platforms.push(new Platform(0, 0, 200, 50, GREY, ORANGE, 0, 0, 0, 0));
 }
 
 class Player {
@@ -252,11 +272,13 @@ class Level {
         this.spawnY = height - 80;
         this.col = BLUE;
         this.selected = {};
+        this.prevSelected = {};
         this.initX = 0;
         this.initY = 0;
     }
 
     select() {
+        this.prevSelected = this.selected;
         for (var i = 0; i < this.platforms.length; i++) {
             if (mouseX > this.platforms[i].x && mouseX < this.platforms[i].x + this.platforms[i].w) {
                 if (mouseY > this.platforms[i].y && mouseY < this.platforms[i].y + this.platforms[i].h) {
@@ -338,6 +360,11 @@ class Level {
                 }
             }
         }
+
+        if (this.selected == this.prevSelected) {
+            this.selected = {};
+            this.prevSelected = {};
+        }
     }
 
     move() {
@@ -350,11 +377,10 @@ class Level {
                     if (this.initY == 0) {
                         this.initY = mouseY - this.platforms[this.selected.index].y;
                     }
-
-                    this.platforms[this.selected.index].x = mouseX - this.initX;
-                    this.platforms[this.selected.index].y = mouseY - this.initY;
                 }
             }
+            this.platforms[this.selected.index].x = mouseX - this.initX;
+            this.platforms[this.selected.index].y = mouseY - this.initY;
         } else if (this.selected.type == "spikes") {
             if (mouseX > this.spikes[this.selected.index].x && mouseX < (this.spikes[this.selected.index].w * 40)) {
                 if (mouseY > this.spikes[this.selected.index].y && mouseY < this.spikes[this.selected.index].y + 40) {
@@ -364,11 +390,10 @@ class Level {
                     if (this.initY == 0) {
                         this.initY = mouseY - this.spikes[this.selected.index].y;
                     }
-
-                    this.spikes[this.selected.index].x = mouseX - this.initX;
-                    this.spikes[this.selected.index].y = mouseY - this.initY;
                 }
             }
+            this.spikes[this.selected.index].x = mouseX - this.initX;
+            this.spikes[this.selected.index].y = mouseY - this.initY;
         } else if (this.selected.type == "trigger") {
             if (mouseX > this.triggers[this.selected.index].x && mouseX < this.triggers[this.selected.index].x + this.triggers[this.selected.index].w) {
                 if (mouseY > this.triggers[this.selected.index].y && mouseY < this.triggers[this.selected.index].y + this.triggers[this.selected.index].h) {
@@ -378,11 +403,10 @@ class Level {
                     if (this.initY == 0) {
                         this.initY = mouseY - this.triggers[this.selected.index].y;
                     }
-
-                    this.triggers[this.selected.index].x = mouseX - this.initX;
-                    this.triggers[this.selected.index].y = mouseY - this.initY;
                 }
             }
+            this.triggers[this.selected.index].x = mouseX - this.initX;
+            this.triggers[this.selected.index].y = mouseY - this.initY;
         } else if (this.selected.type == "key") {
             if (mouseX > this.keys[this.selected.index].x && mouseX < this.keys[this.selected.index].x + 15) {
                 if (mouseY > this.keys[this.selected.index].y && mouseY < this.keys[this.selected.index].y + 15) {
@@ -392,10 +416,9 @@ class Level {
                     if (this.initY == 0) {
                         this.initY = mouseY - this.keys[this.selected.index].y;
                     }
-
-                    this.keys[this.selected.index].x = mouseX - this.initX;
-                    this.keys[this.selected.index].y = mouseY - this.initY;
                 }
+                this.keys[this.selected.index].x = mouseX - this.initX;
+                this.keys[this.selected.index].y = mouseY - this.initY;
             } else if (mouseX > this.keys[this.selected.index].doorX && mouseX < this.keys[this.selected.index].doorX + this.keys[this.selected.index].w) {
                 if (mouseY > this.keys[this.selected.index].doorY && mouseY < this.keys[this.selected.index].doorY + this.keys[this.selected.index].h) {
                     if (this.initX == 0) {
@@ -404,10 +427,9 @@ class Level {
                     if (this.initY == 0) {
                         this.initY = mouseY - this.keys[this.selected.index].doorY;
                     }
-
-                    this.keys[this.selected.index].doorX = mouseX - this.initX;
-                    this.keys[this.selected.index].doorY = mouseY - this.initY;
                 }
+                this.keys[this.selected.index].doorX = mouseX - this.initX;
+                this.keys[this.selected.index].doorY = mouseY - this.initY;
             }
         } else if (this.selected.type == "player") {
             if (mouseX > this.spawnX && mouseX < this.spawnX + 30) {
@@ -418,22 +440,21 @@ class Level {
                     if (this.initY == 0) {
                         this.initY = mouseY - this.spawnY;
                     }
-
-                    this.spawnX = mouseX - this.initX;
-                    this.spawnY = mouseY - this.initY;
-                    if (this.spawnX < 0) {
-                        this.spawnX = 0
-                    }
-                    if (this.spawnX > width - 30) {
-                        this.spawnX = width - 30;
-                    }
-                    if (this.spawnY < 0) {
-                        this.sapwnY = 0;
-                    }
-                    if (this.spawnY > height - 30) {
-                        this.spawnY = height - 30;
-                    }
                 }
+            }
+            this.spawnX = mouseX - this.initX;
+            this.spawnY = mouseY - this.initY;
+            if (this.spawnX < 0) {
+                this.spawnX = 0
+            }
+            if (this.spawnX > width - 30) {
+                this.spawnX = width - 30;
+            }
+            if (this.spawnY < 0) {
+                this.sapwnY = 0;
+            }
+            if (this.spawnY > height - 30) {
+                this.spawnY = height - 30;
             }
         }
     }
