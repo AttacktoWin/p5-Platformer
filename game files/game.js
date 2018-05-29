@@ -58,6 +58,7 @@ function init() {
             for (var i = 0; i < this.level.triggers.length; i++) {
                 this.level.triggers[i].show();
             }
+            noStroke();
             fill(40, 40, 40, 150);
             rect(width - (30 * 4), 30 * 0.5, 30 * 1.5, 30 * 1.5);
             noFill();
@@ -362,8 +363,63 @@ class Level {
         }
 
         if (this.selected == this.prevSelected) {
-            this.selected = {};
-            this.prevSelected = {};
+            if (this.selected.type == "platform") {
+                if (mouseX > this.platforms[this.selected.index].x && mouseX < this.platforms[this.selected.index].x + this.platforms[this.selected.index].w) {
+                    if (mouseY > this.platforms[this.selected.index].y && mouseY < this.platforms[this.selected.index].y + this.platforms[this.selected.index].h) {
+                        initParams = true;
+                    } else {
+                        disposeParams = true;
+                        this.selected = {};
+                        this.prevSelected = {};
+                    }
+                } else {
+                    disposeParams = true;
+                    this.selected = {};
+                    this.prevSelected = {};
+                }
+            } else if (this.selected.type == "spikes") {
+                if (mouseX > this.spikes[this.selected.index].x && mouseX < this.spikes[this.selected.index] + 40 * this.spikes[this.selected.index].w) {
+                    if (mouseY > this.spikes[this.selected.index].y && mouseY < this.spikes[this.selected.index] + 40) {
+                        initParams = true;
+                    } else {
+                        disposeParams = true;
+                        this.selected = {};
+                        this.prevSelected = {};
+                    }
+                } else {
+                    disposeParams = true;
+                    this.selected = {};
+                    this.prevSelected = {};
+                }
+            } else if (this.selected.type == "trigger") {
+                if (mouseX > this.triggers[this.selected.index].x && mouseX < this.triggers[this.selected.index].x + this.triggers[this.selected.index].w) {
+                    if (mouseY > this.triggers[this.selected.index].y && mouseY < this.triggers[this.selected.index].y + this.triggers[this.selected.index].h) {
+                        initParams = true;
+                    } else {
+                        disposeParams = true;
+                        this.selected = {};
+                        this.prevSelected = {};
+                    }
+                } else {
+                    disposeParams = true;
+                    this.selected = {};
+                    this.prevSelected = {};
+                }
+            } else if (this.selected.type == "player") {
+                if (mouseX > this.spawnX && mouseX < this.spawnX + 30) {
+                    if (mouseY > this.spawnY && mouseY < this.spawnY + 30) {
+                        initParams = true;
+                    } else {
+                        disposeParams = true;
+                        this.selected = {};
+                        this.prevSelected = {};
+                    }
+                } else {
+                    disposeParams = true;
+                    this.selected = {};
+                    this.prevSelected = {};
+                }
+            }
         }
     }
 
@@ -457,5 +513,6 @@ class Level {
                 this.spawnY = height - 30;
             }
         }
+        updateParams = true;
     }
 }

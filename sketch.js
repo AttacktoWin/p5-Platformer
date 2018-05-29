@@ -13,7 +13,8 @@ function setup() {
     createCanvas(1920, 1080);
 
     init();
-
+    $("canvas").attr("ng-click", "run()");
+    $("body").append("<div id='parameters'></div>")
 }
 
 function draw() {
@@ -28,8 +29,10 @@ function draw() {
 }
 
 function mouseClicked() {
-    if(game.state == "build") {
+    if(game.state == "build" && mouseX < width && mouseY < height && mouseX > 0 && mouseY > 0) {
         game.level.select();
+    } else {
+        initParams = false;
     }
     game.changeMode();
 }
