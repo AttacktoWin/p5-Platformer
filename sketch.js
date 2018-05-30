@@ -13,6 +13,8 @@ function setup() {
     createCanvas(1920, 1080);
 
     init();
+
+    // game.level.platforms.push(new Platform(0, 0, 100, 50, 0, 0, 1, 1));
 }
 
 function draw() {

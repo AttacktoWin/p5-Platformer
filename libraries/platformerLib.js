@@ -1,13 +1,11 @@
 class Platform {
-    constructor(x, y, w, h, col, topCol, dx, dy, xSpeed, ySpeed) {
+    constructor(x, y, w, h, dx, dy, xSpeed, ySpeed) {
         this.x = x;
         this.homeX = x;
         this.y = y;
         this.homeY = y;
         this.w = w;
         this.h = h;
-        this.col = col;
-        this.topCol = topCol;
         this.dx = dx;
         this.dy = dy;
         this.xSpeed = xSpeed;
@@ -30,22 +28,35 @@ class Platform {
     show() {
         stroke(255);
         strokeWeight(this.stroke);
-        fill(this.col);
+        fill(GREY);
         rect(this.x, this.y, this.w, this.h);
-        fill(this.topCol);
+        if (this.xSpeed == 0 && this.ySpeed == 0) {
+            fill(ORANGE);
+        } else {
+            fill(BLUE);
+        }
         rect(this.x, this.y - 4, this.w, 4);
+
+        if (game.state == "build") {
+            if (this.xSpeed != 0 || this.ySpeed != 0) {
+                noStroke();
+                fill(80, 80, 80, 150);
+                rect(this.x + this.dx, this.y + this.dy, this.w, this.h);
+                fill(40, 169, 224, 150);
+                rect(this.x + this.dx, this.y + this.dy - 4, this.w, 4);
+            }
+        }
     }
 }
 
 class Spike {
-    constructor(x, y, w, r, col, dx, dy, xSpeed, ySpeed) {
+    constructor(x, y, w, r, dx, dy, xSpeed, ySpeed) {
         this.x = x;
         this.homeX = x;
         this.y = y;
         this.homeY = y;
         this.w = w;
         this.r = r;
-        this.col = col;
         this.dx = dx;
         this.dy = dy;
         this.xSpeed = xSpeed;
@@ -68,7 +79,7 @@ class Spike {
     show() {
         stroke(255);
         strokeWeight(this.stroke);
-        fill(this.col);
+        fill(RED);
         if (this.r == 1 || this.r == 3) {
             for (var x1 = this.x; x1 < ((this.w * 40) + this.x); x1 += 40) {
                 if (this.r == 1) {
@@ -89,68 +100,68 @@ class Spike {
     }
 }
 
-class Trigger {
-    constructor(x, y, w, h, func) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.func = func;
-        this.stroke = 0;
-    }
+// class Trigger {
+//     constructor(x, y, w, h, func) {
+//         this.x = x;
+//         this.y = y;
+//         this.w = w;
+//         this.h = h;
+//         this.func = func;
+//         this.stroke = 0;
+//     }
 
-    logic() {
-        if (player.x + player.w > this.x && player.x < this.x + this.w) {
-            if (player.y + player.h > this.y && player.y < this.y + this.h) {
-                this.func();
-            }
-        }
-    }
+//     logic() {
+//         if (player.x + player.w > this.x && player.x < this.x + this.w) {
+//             if (player.y + player.h > this.y && player.y < this.y + this.h) {
+//                 this.func();
+//             }
+//         }
+//     }
 
-    show() {
-        stroke(255);
-        strokeWeight(this.stroke);
-        fill(255, 0, 0, 125);
-        rect(this.x, this.y, this.w, this.h);
-    }
-}
+//     show() {
+//         stroke(255);
+//         strokeWeight(this.stroke);
+//         fill(255, 0, 0, 125);
+//         rect(this.x, this.y, this.w, this.h);
+//     }
+// }
 
-class Key {
-    constructor (x, y, doorX, doorY, w, h, index) {
-        this.x = x;
-        this.y = y;
-        this.doorX = doorX;
-        this.doorY = doorY;
-        this.w = w;
-        this.h = h;
-        this.index = index;
-        this.stroke = 0;
-    }
+// class Key {
+//     constructor(x, y, doorX, doorY, w, h, index) {
+//         this.x = x;
+//         this.y = y;
+//         this.doorX = doorX;
+//         this.doorY = doorY;
+//         this.w = w;
+//         this.h = h;
+//         this.index = index;
+//         this.stroke = 0;
+//     }
 
-    logic() {
-        if (player.x + player.w > this.x && player.x < this.x + 15) {
-            if (player.y + player.h > this.y && player.y < this.y + 15) {
-                game.keys.splice(this.index, 1);
-            }
-        }
-        if (player.x + player.w > this.doorX && player.x < this.doorX + this.w) {
-            if (player.y + player.h >= this.doorY - 1 && player.y <= this.doorY + this.h - 1) {
-                player.ySpeed = 0;
-                player.y = this.doorY - player.h - 1;
-                player.jumped = false;
-            }
-        }
-    }
+//     logic() {
+//         if (player.x + player.w > this.x && player.x < this.x + 15) {
+//             if (player.y + player.h > this.y && player.y < this.y + 15) {
+//                 game.keys.splice(this.index, 1);
+//             }
+//         }
+//         if (player.x + player.w > this.doorX && player.x < this.doorX + this.w) {
+//             if (player.y + player.h >= this.doorY - 1 && player.y <= this.doorY + this.h - 1) {
+//                 player.ySpeed = 0;
+//                 player.y = this.doorY - player.h - 1;
+//                 player.jumped = false;
+//             }
+//         }
+//     }
 
-    show() {
-        fill(ORANGE);
-        stroke(255);
-        strokeWeight(this.stroke);
-        rect(this.x, this.y, 15, 15);
-        fill(BROWN);
-        rect(this.doorX, this.doorY, this.w, this.h);
-    }
-}
+//     show() {
+//         fill(ORANGE);
+//         stroke(255);
+//         strokeWeight(this.stroke);
+//         rect(this.x, this.y, 15, 15);
+//         fill(BROWN);
+//         rect(this.doorX, this.doorY, this.w, this.h);
+//     }
+// }
 
 class Arrow {
     constructor(x, y, run, rise) {
@@ -159,7 +170,7 @@ class Arrow {
         this.run = run;
         this.rise = rise;
     }
-    
+
     show() {
         stroke(255);
         strokeWeight(3);
