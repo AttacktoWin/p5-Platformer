@@ -14,11 +14,23 @@ class Platform {
     }
 
     logic() {
-        if (this.x > this.homeX + this.dx || this.x < this.homeX) {
-            this.xSpeed *= -1;
+        if (this.dx > 0) {
+            if (this.x > this.homeX + this.dx || this.x < this.homeX) {
+                this.xSpeed *= -1;
+            }
+        } else if (this.dx < 0) {
+            if (this.x < this.homeX + this.dx || this.x > this.homeX) {
+                this.xSpeed *= -1;
+            }
         }
-        if (this.y > this.homeY + this.dy || this.y < this.homeY) {
-            this.ySpeed *= -1;
+        if (this.dy > 0) {
+            if (this.y > this.homeY + this.dy || this.y < this.homeY) {
+                this.ySpeed *= -1;
+            }
+        } else if (this.dy < 0) {
+            if (this.y < this.homeY + this.dy || this.y > this.homeY) {
+                this.ySpeed *= -1;
+            }
         }
 
         this.x += this.xSpeed;
@@ -37,7 +49,7 @@ class Platform {
         }
         rect(this.x, this.y - 4, this.w, 4);
 
-        if (game.state == "build") {
+        if (game.state == "build" && this.stroke == 2) {
             if (this.xSpeed != 0 || this.ySpeed != 0) {
                 noStroke();
                 fill(80, 80, 80, 150);
@@ -65,11 +77,23 @@ class Spike {
     }
 
     logic() {
-        if (this.x > this.homeX + this.dx || this.x < this.homeX) {
-            this.xSpeed *= -1;
+        if (this.dx > 0) {
+            if (this.x > this.homeX + this.dx || this.x < this.homeX) {
+                this.xSpeed *= -1;
+            }
+        } else if (this.dx < 0) {
+            if (this.x < this.homeX + this.dx || this.x > this.homeX) {
+                this.xSpeed *= -1;
+            }
         }
-        if (this.y > this.homeY + this.dy || this.y < this.homeY) {
-            this.ySpeed *= -1;
+        if (this.dy > 0) {
+            if (this.y > this.homeY + this.dy || this.y < this.homeY) {
+                this.ySpeed *= -1;
+            }
+        } else if (this.dy < 0) {
+            if (this.y < this.homeY + this.dy || this.y > this.homeY) {
+                this.ySpeed *= -1;
+            }
         }
 
         this.x += this.xSpeed;
@@ -83,7 +107,7 @@ class Spike {
         if (this.r == 1 || this.r == 3) {
             for (var x1 = this.x; x1 < ((this.w * 40) + this.x); x1 += 40) {
                 if (this.r == 1) {
-                    triangle(x1, this.y, x1 + 40, this.y, x1 + 20, this.y - 40);
+                    triangle(x1, this.y + 40, x1 + 40, this.y + 40, x1 + 20, this.y);
                 } else if (this.r == 3) {
                     triangle(x1, this.y, x1 + 40, this.y, x1 + 20, this.y + 40);
                 }
@@ -93,9 +117,34 @@ class Spike {
                 if (this.r == 2) {
                     triangle(this.x, y1, this.x + 40, y1 + 20, this.x, y1 + 40);
                 } else if (this.r == 4) {
-                    triangle(this.x, y1, this.x - 40, y1 + 20, this.x, y1 + 40);
+                    triangle(this.x + 40, y1, this.x, y1 + 20, this.x + 40, y1 + 40);
                 }
             }
+        }
+
+        if (game.state == "build" && this.stroke == 2) {
+            fill(187, 42, 39, 150);
+            if (this.r == 1 || this.r == 3) {
+                for (var x1 = this.x + this.dx; x1 < ((this.w * 40) + this.x + this.dx); x1 += 40) {
+                    if (this.r == 1) {
+                        triangle(x1, this.y + 40 + this.dy, x1 + 40, this.y + 40 + this.dy, x1 + 20, this.y + this.dy);
+                    } else if (this.r == 3) {
+                        triangle(x1, this.y + this.dy, x1 + 40, this.y + this.dy, x1 + 20, this.y + 40 + this.dy);
+                    }
+                }
+            } else if (this.r == 2 || this.r == 4) {
+                for (var y1 = this.y + this.dy; y1 < ((this.w * 40) + this.y + this.dy); y1 += 40) {
+                    if (this.r == 2) {
+                        triangle(this.x + this.dx, y1, this.x + 40 + this.dx, y1 + 20, this.x + this.dx, y1 + 40);
+                    } else if (this.r == 4) {
+                        triangle(this.x + 40 + this.dx, y1, this.x + this.dx, y1 + 20, this.x + 40 + this.dx, y1 + 40);
+                    }
+                }
+            }
+        }
+
+        if (this.w < 1) {
+            this.w = 1;
         }
     }
 }

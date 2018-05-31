@@ -93,8 +93,8 @@ function init() {
                     } else if (this.level.selected.type == "spikes") {
                         if (keyIsDown(RIGHT_ARROW)) {
                             this.level.spikes[this.level.selected.index].r = 2;
-                        } else {
-                            this.level.spikes[this.level.selecte.index].w++;
+                        } else if (this.level.spikes[this.level.selected.index].r == 1 ||this.level.spikes[this.level.selected.index].r == 3) {
+                            this.level.spikes[this.level.selected.index].w++;
                         }
                     }
                 }
@@ -104,8 +104,8 @@ function init() {
                     } else if (this.level.selected.type == "spikes") {
                         if (keyIsDown(LEFT_ARROW)) {
                             this.level.spikes[this.level.selected.index].r = 4;
-                        } else {
-                            this.level.spikes[this.level.selecte.index].w--;
+                        } else if (this.level.spikes[this.level.selected.index].r == 1 ||this.level.spikes[this.level.selected.index].r == 3) {
+                            this.level.spikes[this.level.selected.index].w--;
                         }
                     }
                 }
@@ -115,8 +115,8 @@ function init() {
                     } else if (this.level.selected.type == "spikes") {
                         if (keyIsDown(UP_ARROW)) {
                             this.level.spikes[this.level.selected.index].r = 1;
-                        } else {
-                            this.level.spikes[this.level.selecte.index].h--;
+                        } else if (this.level.spikes[this.level.selected.index].r == 2 ||this.level.spikes[this.level.selected.index].r == 4) {
+                            this.level.spikes[this.level.selected.index].w--;
                         }
                     }
                 }
@@ -126,8 +126,8 @@ function init() {
                     } else if (this.level.selected.type == "spikes") {
                         if (keyIsDown(DOWN_ARROW)) {
                             this.level.spikes[this.level.selected.index].r = 3;
-                        } else {
-                            this.level.spikes[this.level.selecte.index].h++;
+                        } else if (this.level.spikes[this.level.selected.index].r == 2 ||this.level.spikes[this.level.selected.index].r == 4) {
+                            this.level.spikes[this.level.selected.index].w++;
                         }
                     }
                 }
@@ -136,7 +136,7 @@ function init() {
                     if (this.level.selected.type == "platform") {
                         this.level.platforms[this.level.selected.index].dx++;
                     } else if (this.level.selected.type == "spikes") {
-                        this.level.spikes[this.level.selecte.index].dx++;
+                        this.level.spikes[this.level.selected.index].dx++;
                     }
                 }
                 if (keyIsDown(65)) {
@@ -150,14 +150,14 @@ function init() {
                     if (this.level.selected.type == "platform") {
                         this.level.platforms[this.level.selected.index].dy--;
                     } else if (this.level.selected.type == "spikes") {
-                        this.level.spikes[this.level.selecte.index].dy--;
+                        this.level.spikes[this.level.selected.index].dy--;
                     }
                 }
                 if (keyIsDown(83)) {
                     if (this.level.selected.type == "platform") {
                         this.level.platforms[this.level.selected.index].dy++;
                     } else if (this.level.selected.type == "spikes") {
-                        this.level.spikes[this.level.selecte.index].dy++;
+                        this.level.spikes[this.level.selected.index].dy++;
                     }
                 }
 
@@ -166,8 +166,8 @@ function init() {
                         this.level.platforms[this.level.selected.index].xSpeed++;
                         this.level.moveables = new Arrow(this.level.platforms[this.level.selected.index].x + (this.level.platforms[this.level.selected.index].w / 2), this.level.platforms[this.level.selected.index].y + (this.level.platforms[this.level.selected.index].h / 2), this.level.platforms[this.level.selected.index].xSpeed * 5, this.level.platforms[this.level.selected.index].ySpeed * 5);
                     } else if (this.level.selected.type == "spikes") {
-                        this.level.spikes[this.level.selecte.index].xSpeed++;
-                        this.level.moveables = new Arrow(this.level.spikes[this.level.selected.index].x + (this.level.spikes[this.level.selected.index].w / 2), this.level.spikes[this.level.selected.index].y + (this.level.spikes[this.level.selected.index].h / 2), this.level.spikes[this.level.selected.index].xSpeed * 5, this.level.spikes[this.level.selected.index].ySpeed * 5);
+                        this.level.spikes[this.level.selected.index].xSpeed++;
+                        this.level.moveables = new Arrow(this.level.spikes[this.level.selected.index].x + (this.level.spikes[this.level.selected.index].w / 2), this.level.spikes[this.level.selected.index].y + (40 / 2), this.level.spikes[this.level.selected.index].xSpeed * 5, this.level.spikes[this.level.selected.index].ySpeed * 5);
                     }
                 }
                 if (keyIsDown(LEFT_ARROW)) {
@@ -175,8 +175,8 @@ function init() {
                         this.level.platforms[this.level.selected.index].xSpeed--;
                         this.level.moveables = new Arrow(this.level.platforms[this.level.selected.index].x + (this.level.platforms[this.level.selected.index].w / 2), this.level.platforms[this.level.selected.index].y + (this.level.platforms[this.level.selected.index].h / 2), this.level.platforms[this.level.selected.index].xSpeed * 5, this.level.platforms[this.level.selected.index].ySpeed * 5);
                     } else if (this.level.selected.type == "spikes") {
-                        this.level.spikes[this.level.selecte.index].xSpeed--;
-                        this.level.moveables = new Arrow(this.level.spikes[this.level.selected.index].x + (this.level.spikes[this.level.selected.index].w / 2), this.level.spikes[this.level.selected.index].y + (this.level.spikes[this.level.selected.index].h / 2), this.level.spikes[this.level.selected.index].xSpeed * 5, this.level.spikes[this.level.selected.index].ySpeed * 5);
+                        this.level.spikes[this.level.selected.index].xSpeed--;
+                        this.level.moveables = new Arrow(this.level.spikes[this.level.selected.index].x + (this.level.spikes[this.level.selected.index].w / 2), this.level.spikes[this.level.selected.index].y + (40 / 2), this.level.spikes[this.level.selected.index].xSpeed * 5, this.level.spikes[this.level.selected.index].ySpeed * 5);
                     }
                 }
                 if (keyIsDown(DOWN_ARROW)) {
@@ -184,8 +184,8 @@ function init() {
                         this.level.platforms[this.level.selected.index].ySpeed++;
                         this.level.moveables = new Arrow(this.level.platforms[this.level.selected.index].x + (this.level.platforms[this.level.selected.index].w / 2), this.level.platforms[this.level.selected.index].y + (this.level.platforms[this.level.selected.index].h / 2), this.level.platforms[this.level.selected.index].xSpeed * 5, this.level.platforms[this.level.selected.index].ySpeed * 5);
                     } else if (this.level.selected.type == "spikes") {
-                        this.level.spikes[this.level.selecte.index].ySpeed++;
-                        this.level.moveables = new Arrow(this.level.spikes[this.level.selected.index].x + (this.level.spikes[this.level.selected.index].w / 2), this.level.spikes[this.level.selected.index].y + (this.level.spikes[this.level.selected.index].h / 2), this.level.spikes[this.level.selected.index].xSpeed * 5, this.level.spikes[this.level.selected.index].ySpeed * 5);
+                        this.level.spikes[this.level.selected.index].ySpeed++;
+                        this.level.moveables = new Arrow(this.level.spikes[this.level.selected.index].x + (this.level.spikes[this.level.selected.index].w / 2), this.level.spikes[this.level.selected.index].y + (40 / 2), this.level.spikes[this.level.selected.index].xSpeed * 5, this.level.spikes[this.level.selected.index].ySpeed * 5);
                     }
                 }
                 if (keyIsDown(UP_ARROW)) {
@@ -193,8 +193,8 @@ function init() {
                         this.level.platforms[this.level.selected.index].ySpeed--;
                         this.level.moveables = new Arrow(this.level.platforms[this.level.selected.index].x + (this.level.platforms[this.level.selected.index].w / 2), this.level.platforms[this.level.selected.index].y + (this.level.platforms[this.level.selected.index].h / 2), this.level.platforms[this.level.selected.index].xSpeed * 5, this.level.platforms[this.level.selected.index].ySpeed * 5);
                     } else if (this.level.selected.type == "spikes") {
-                        this.level.spikes[this.level.selecte.index].ySpeed--;
-                        this.level.moveables = new Arrow(this.level.spikes[this.level.selected.index].x + (this.level.spikes[this.level.selected.index].w / 2), this.level.spikes[this.level.selected.index].y + (this.level.spikes[this.level.selected.index].h / 2), this.level.spikes[this.level.selected.index].xSpeed * 5, this.level.spikes[this.level.selected.index].ySpeed * 5);
+                        this.level.spikes[this.level.selected.index].ySpeed--;
+                        this.level.moveables = new Arrow(this.level.spikes[this.level.selected.index].x + (this.level.spikes[this.level.selected.index].w / 2), this.level.spikes[this.level.selected.index].y + (40 / 2), this.level.spikes[this.level.selected.index].xSpeed * 5, this.level.spikes[this.level.selected.index].ySpeed * 5);
                     }
                 }
             }
@@ -434,19 +434,36 @@ class Level {
             }
         }
         for (var i = 0; i < this.spikes.length; i++) {
-            if (mouseX > this.spikes[i].x && mouseX < this.spikes[i].x + (this.spikes[i].w * 40)) {
-                if (mouseY > this.spikes[i].y && mouseY < this.spikes[i].y + 40) {
-                    this.selected = {
-                        type: "spikes",
-                        index: i
+            if (this.spikes[i].r == 1 || this.spikes[i].r == 3) {
+                if (mouseX > this.spikes[i].x && mouseX < this.spikes[i].x + (this.spikes[i].w * 40)) {
+                    if (mouseY > this.spikes[i].y && mouseY < this.spikes[i].y + 40) {
+                        this.selected = {
+                            type: "spikes",
+                            index: i
+                        }
+                        this.moveables = new Arrow(this.spikes[this.selected.index].x + (this.spikes[this.selected.index].w / 2), this.spikes[this.selected.index].y + (this.spikes[this.selected.index].h / 2), this.spikes[this.selected.index].xSpeed * 5, this.spikes[this.selected.index].ySpeed * 5);
+                        this.spikes[i].stroke = 2;
+                    } else {
+                        this.spikes[i].stroke = 0;
                     }
-                    this.moveables = new Arrow(this.spikes[this.selected.index].x + (this.spikes[this.selected.index].w / 2), this.spikes[this.selected.index].y + (this.spikes[this.selected.index].h / 2), this.spikes[this.selected.index].xSpeed * 5, this.spikes[this.selected.index].ySpeed * 5);
-                    this.spikes[i].stroke = 2;
                 } else {
                     this.spikes[i].stroke = 0;
                 }
             } else {
-                this.spikes[i].stroke = 0;
+                if (mouseX > this.spikes[i].x && mouseX < this.spikes[i].x + 40) {
+                    if (mouseY > this.spikes[i].y && mouseY < this.spikes[i].y + (this.spikes[i].w * 40)) {
+                        this.selected = {
+                            type: "spikes",
+                            index: i
+                        }
+                        this.moveables = new Arrow(this.spikes[this.selected.index].x + (this.spikes[this.selected.index].w / 2), this.spikes[this.selected.index].y + (this.spikes[this.selected.index].h / 2), this.spikes[this.selected.index].xSpeed * 5, this.spikes[this.selected.index].ySpeed * 5);
+                        this.spikes[i].stroke = 2;
+                    } else {
+                        this.spikes[i].stroke = 0;
+                    }
+                } else {
+                    this.spikes[i].stroke = 0;
+                }
             }
         }
 
@@ -487,13 +504,26 @@ class Level {
             this.platforms[this.selected.index].homeY = this.platforms[this.selected.index].y;
             this.moveables = new Arrow(this.platforms[this.selected.index].x + (this.platforms[this.selected.index].w / 2), this.platforms[this.selected.index].y + (this.platforms[this.selected.index].h / 2), this.platforms[this.selected.index].xSpeed * 5, this.platforms[this.selected.index].ySpeed * 5);
         } else if (this.selected.type == "spikes") {
-            if (mouseX > this.spikes[this.selected.index].x && mouseX < (this.spikes[this.selected.index].w * 40)) {
-                if (mouseY > this.spikes[this.selected.index].y && mouseY < this.spikes[this.selected.index].y + 40) {
-                    if (this.initX == 0) {
-                        this.initX = mouseX - this.spikes[this.selected.index].x;
+            if (this.spikes[this.selected.index].r == 1 || this.spikes[this.selected.index].r == 3) {
+                if (mouseX > this.spikes[this.selected.index].x && mouseX < (this.spikes[this.selected.index].w * 40)) {
+                    if (mouseY > this.spikes[this.selected.index].y && mouseY < this.spikes[this.selected.index].y + 40) {
+                        if (this.initX == 0) {
+                            this.initX = mouseX - this.spikes[this.selected.index].x;
+                        }
+                        if (this.initY == 0) {
+                            this.initY = mouseY - this.spikes[this.selected.index].y;
+                        }
                     }
-                    if (this.initY == 0) {
-                        this.initY = mouseY - this.spikes[this.selected.index].y;
+                }
+            } else {
+                if (mouseX > this.spikes[this.selected.index].x && mouseX < this.spikes[this.selected.index].x + 40) {
+                    if (mouseY > this.spikes[this.selected.index].y && mouseY < this.spikes[this.selected.index].y + (this.spikes[this.selected.index].w * 40)) {
+                        if (this.initX == 0) {
+                            this.initX = mouseX - this.spikes[this.selected.index].x;
+                        }
+                        if (this.initY == 0) {
+                            this.initY = mouseY - this.spikes[this.selected.index].y;
+                        }
                     }
                 }
             }
